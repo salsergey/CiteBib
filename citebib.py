@@ -44,6 +44,7 @@ def test():
         #If the key is in the tex file
         if citekey in citations:
             tmp = dict()
+            tmp['type'] = entries[entry]['type']
             for field in entries[entry].keys():
                 #If the field is requested
                 if field in reqfield:
@@ -53,9 +54,9 @@ def test():
     pprint(new)
 
 
-    #Format the biblio
-
     #write it!
+    from citebib.writer import write_bibtex
+    write_bibtex(new, '/tmp/toto')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
