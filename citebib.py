@@ -41,12 +41,14 @@ def test():
 
     for entry in entries:
         citekey = entries[entry]['id']
+        #If the key is in the tex file
         if citekey in citations:
             tmp = dict()
             for field in entries[entry].keys():
+                #If the field is requested
                 if field in reqfield:
                     tmp[field] = clean_entry(field, entries[entry][field])
-
+            #Push the entry
             new[entry] = tmp
     pprint(new)
 
