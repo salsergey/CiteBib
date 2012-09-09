@@ -7,12 +7,19 @@ import argparse
 from citebib import info
 
 
+
+
 def test():
     """
     Idea for the structure
     """
     from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
+
+
+    from citebib.bibtexentry import clean_entry
+
+
 
     bibfile = 'biblio.bib'
     texfile = 'text.tex'
@@ -38,7 +45,7 @@ def test():
             tmp = dict()
             for field in entries[entry].keys():
                 if field in reqfield:
-                    tmp[field] = entries[entry][field]
+                    tmp[field] = clean_entry(field, entries[entry][field])
 
             new[entry] = tmp
     pprint(new)
