@@ -11,16 +11,20 @@ def test():
     """
     Idea for the structure
     """
-    from citebib.importer import get_bibtex_entries
+    from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
 
     bibfile = 'biblio.bib'
     texfile = 'text.tex'
     bibfile2 = 'a.bib'
 
+    #Load the tex
+    citations = get_citations(texfile)
+    pprint(citations)
+
     #Load the bibtex
-    entries = get_bibtex_entries(bibfile2) 
-    pprint(entries)
+    entries = get_bibtex_entries(bibfile) 
+    #pprint(entries)
 
     reqfield = ('author', 'year')
 
@@ -29,14 +33,14 @@ def test():
     new = dict()
 
     for entry in entries:
-        #TODO
-        #if entry in tex file:
-        tmp = dict()
-        for field in entries[entry].keys():
-            if field in reqfield:
-                tmp[field] = entries[entry][field]
+        citekey = entries[entry]['id']
+        if citekey in citations:
+            tmp = dict()
+            for field in entries[entry].keys():
+                if field in reqfield:
+                    tmp[field] = entries[entry][field]
 
-        new[entry] = tmp
+            new[entry] = tmp
     pprint(new)
 
 
