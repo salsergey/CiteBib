@@ -59,6 +59,10 @@ def clean_entry(field, content):
     if field == 'author':
         #TODO or the other one...
         return get_authors_bibtex(content)
+    elif field == 'journal':
+        return content['name']
+    elif field == 'pages':
+        return content #FIXME: remove "to" ?
     else:
         return content
 

@@ -9,7 +9,7 @@ from citebib import info
 
 
 
-def test():
+def main():
     """
     Idea for the structure
     """
@@ -33,7 +33,23 @@ def test():
     entries = get_bibtex_entries(bibfile) 
     #pprint(entries)
 
-    reqfield = ('author', 'year')
+
+    reqfields = {
+        'test' : ('author', 'year'),
+        'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
+        'book' : ('author','editor','title','publisher','year'),
+        'booklet' : ('title'),
+        'conference' : ('author','title','booktitle','year'),
+        'inproceedings' : ('author','title','booktitle','year'),
+        'inbook' : ('author','editor','title','chapter','pages','publisher','year'),
+        'incollection' : ('author','title','bookpublisher','year'),
+        'manual' : ('title'),
+        'mastersthesis' : ('author','title','school','year'),
+        'misc' : (),
+        'phdthesis' : ('author','title','school','year'),
+        'proceedings' : ('title','year'),
+        'techreport' : ('author','title','institution','year')
+        }
 
 
     #Create a new dir with reqfields only
@@ -47,7 +63,7 @@ def test():
             tmp['type'] = entries[entry]['type']
             for field in entries[entry].keys():
                 #If the field is requested
-                if field in reqfield:
+                if field in reqfields[tmp['type']]:
                     tmp[field] = clean_entry(field, entries[entry][field])
             #Push the entry
             new[entry] = tmp
@@ -64,4 +80,4 @@ if __name__ == '__main__':
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
     args = parser.parse_args()
 
-    test()
+    main()
