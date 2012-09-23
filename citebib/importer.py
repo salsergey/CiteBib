@@ -22,38 +22,30 @@ from citebib.utils import uniq
 def get_citations(texfilename):
     """Get all citations in a tex file"""
     
-    # Open the tex file
-    try:
-        tex = open(texfilename,'r')
-    except IOError:
-        sys.stderr.write('Error: ' + texfilename + ' does not exist.\n')
-        exit(1)
-
-    #it seems that extra spaces in cite with multiple refs
-    #works with bibtex, but not recommanded as said on wikipedia
-        
-    #Catch citations
-    cite = re.compile('cite({|\[\]{)((\w|-|,|\s)+)}') #Can contain spaces?
-    allcite = []
-
-    for line in tex:
-        #TODO: should handle commented lines
-        #Very basic commented line escape
-        if re.match('^\%', line):
-            continue
-        
-        #we get citations
-        results = cite.findall(line)
-        if results: 
-            # loop on all results for the line
-            for el in results:
-                #sometimes, cite contains several citations
-                foo = re.sub("\s", "", str(el[1])) #remove extra spaces
-                foo = re.split(",", foo)
-                allcite.extend(foo)
-
-    tex.close()
-
+    with open(texfilename,'r') as tex:
+    
+        #it seems that extra spaces in cite with multiple refs
+        #works with bibtex, but not recommanded as said on wikipedia
+            
+        #Catch citations
+        cite = re.compile('cite({|\[\]{)((\w|-|,|\s)+)}') #Can contain spaces?
+        allcite = []
+    
+        for line in tex:
+            #TODO: should handle commented lines
+            #Very basic commented line escape
+            if re.match('^\%', line):
+                continue
+            
+            #we get citations
+            results = cite.findall(line)
+            if results: 
+                # loop on all results for the line
+                for el in results:
+                    #sometimes, cite contains several citations
+                    foo = re.sub("\s", "", str(el[1])) #remove extra spaces
+                    foo = re.split(",", foo)
+                    allcite.extend(foo)
     #uniqify the list
     #A set could not be used since the order might have a sense
     allcite = uniq(allcite)
