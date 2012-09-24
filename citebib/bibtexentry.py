@@ -32,14 +32,19 @@ def get_authors(authors, short=0):
         name = name['name'].split(',')
         name[1] = clean_last_name(name[1])
         author_string += str(name[1]) + ' ' + str(name[0]) 
+
+        #Separator
         if pos == len(authors) - 2:
             author_string += ' and '
         elif pos == len(authors) - 1:
             pass
-        else:
+        elif pos + 1 < short and short != 0:
             author_string += ', '
+        elif short == 0:
+            author_string += ', '
+    #Add et al if the list is too long...
     if short != 0 and short < len(authors):
-        author_string += 'et al.'
+        author_string += ' et al.'
     
     return author_string
 
