@@ -9,7 +9,7 @@ from citebib import info
 
 
 
-def main(bibfile, texfile, output):
+def main(bibfiles, texfiles, output):
     """
     Idea for the structure
     """
@@ -23,11 +23,15 @@ def main(bibfile, texfile, output):
 
 
     #Load the tex
-    citations = get_citations(texfile)
+    citations = []
+    for texfile in texfiles:
+        citations.extend(get_citations(texfile))
     pprint(citations)
 
     #Load the bibtex
-    entries = get_bibtex_entries(bibfile) 
+    entries = {}
+    for bibfile in bibfiles:
+        entries.update(get_bibtex_entries(bibfile)) 
 
     reqfields = {
         'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
@@ -72,11 +76,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
                              epilog='')
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
+    parser.add_argument('-b', metavar='BIBTEX', nargs='+', required=True, help='Bibtex file(s)')
+    parser.add_argument('-t', metavar='TEX', nargs='+', required=True, help='Tex file(s)')
+    parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output')
     args = parser.parse_args()
 
-    bibfile = 'biblio.bib'
-    texfile = 'text.tex'
-    bibfile2 = 'a.bib'
+    #TODO If no output... 
     output = '/tmp/toto'
-    #TODO list of files for bibfile, texfile...
-    main(bibfile, texfile, output)
+
+    bibfiles = args.b
+    texfiles = args.t
+    main(bibfiles, texfiles, output)
