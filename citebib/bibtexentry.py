@@ -29,7 +29,7 @@ def get_authors(authors, short=0):
     
     author_string = ''
     for name in author_list:
-        name = author['name'].split(',')
+        name = name['name'].split(',')
         name[1] = clean_last_name(name[1])
         author_string += str(name[0]) + ', ' + str(name[1]) #TODO need separator
     if short != 0 and short < len(authors):
