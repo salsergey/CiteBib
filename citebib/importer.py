@@ -28,7 +28,7 @@ def get_citations(texfilename):
         #works with bibtex, but not recommanded as said on wikipedia
             
         #Catch citations
-        cite = re.compile('cite({|\[\]{)((\w|-|,|\s)+)}') #Can contain spaces?
+        cite = re.compile('cite({|\[.+?\]{)((\w|-|,|\s)+)}') #Can contain spaces?
         allcite = []
     
         for line in tex:

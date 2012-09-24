@@ -64,7 +64,6 @@ class TestGetCitations(unittest.TestCase):
         result = get_citations(temp)
         self.assertEqual(expected, result)
 
-    @unittest.skip("Not yet implemented!")
     def test_citations_with_option(self):
         text = """
         \cite[option]{Foo1999}
