@@ -9,7 +9,7 @@ from citebib import info
 
 
 
-def main():
+def main(bibfile, texfile, output):
     """
     Idea for the structure
     """
@@ -21,9 +21,6 @@ def main():
 
 
 
-    bibfile = 'biblio.bib'
-    texfile = 'text.tex'
-    bibfile2 = 'a.bib'
 
     #Load the tex
     citations = get_citations(texfile)
@@ -33,7 +30,6 @@ def main():
     entries = get_bibtex_entries(bibfile) 
 
     reqfields = {
-        'test' : ('author', 'year'),
         'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
         'book' : ('author','editor','title','publisher','year'),
         'booklet' : ('title'),
@@ -70,7 +66,7 @@ def main():
 
     #write it!
     from citebib.writer import write_bibtex
-    write_bibtex(new, '/tmp/toto')
+    write_bibtex(new, output)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
@@ -78,4 +74,9 @@ if __name__ == '__main__':
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
     args = parser.parse_args()
 
-    main()
+    bibfile = 'biblio.bib'
+    texfile = 'text.tex'
+    bibfile2 = 'a.bib'
+    output = '/tmp/toto'
+    #TODO list of files for bibfile, texfile...
+    main(bibfile, texfile, output)
