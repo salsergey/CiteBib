@@ -31,7 +31,7 @@ from bibtexentry import get_authors
 
 class TestGetAuthor(unittest.TestCase):
 
-    @unittest.skip('not fully implemented')
+    #@unittest.skip('not fully implemented')
     def test_simple_list(self):
         authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
         expected = 'J. Foo, R. Bar and D. Foobar'

@@ -28,10 +28,16 @@ def get_authors(authors, short=0):
         author_list = authors[:short]
     
     author_string = ''
-    for name in author_list:
+    for pos, name in enumerate(author_list):
         name = name['name'].split(',')
         name[1] = clean_last_name(name[1])
-        author_string += str(name[0]) + ', ' + str(name[1]) #TODO need separator
+        author_string += str(name[1]) + ' ' + str(name[0]) 
+        if pos == len(authors) - 2:
+            author_string += ' and '
+        elif pos == len(authors) - 1:
+            pass
+        else:
+            author_string += ', '
     if short != 0 and short < len(authors):
         author_string += 'et al.'
     
