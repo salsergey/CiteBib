@@ -51,26 +51,28 @@ class TestGetCitations(unittest.TestCase):
         result = get_citations(temp)
         self.assertEqual(expected, result)
 
-    #def test_commented_citations(self):
-    #    text = """
-    #    I want this one \cite{Foo1999} %but not that one \cite{Bar2000}
-    #    """
-    #    temp = tempfile.mkstemp()[1] 
-    #    with open(temp, 'w') as tmp:
-    #        tmp.write(text)
+    @unittest.skip("Not yet implemented!")
+    def test_commented_citations(self):
+        text = """
+        I want this one \cite{Foo1999} %but not that one \cite{Bar2000}
+        """
+        temp = tempfile.mkstemp()[1] 
+        with open(temp, 'w') as tmp:
+            tmp.write(text)
 
-    #    expected = ['Foo1999']
-    #    result = get_citations(temp)
-    #    self.assertEqual(expected, result)
+        expected = ['Foo1999']
+        result = get_citations(temp)
+        self.assertEqual(expected, result)
 
-    #def test_citations_with_option(self):
-    #    text = """
-    #    \cite[option]{Foo1999}
-    #    """
-    #    temp = tempfile.mkstemp()[1] 
-    #    with open(temp, 'w') as tmp:
-    #        tmp.write(text)
+    @unittest.skip("Not yet implemented!")
+    def test_citations_with_option(self):
+        text = """
+        \cite[option]{Foo1999}
+        """
+        temp = tempfile.mkstemp()[1] 
+        with open(temp, 'w') as tmp:
+            tmp.write(text)
 
-    #    expected = ['Foo1999']
-    #    result = get_citations(temp)
-    #    self.assertEqual(expected, result)
+        expected = ['Foo1999']
+        result = get_citations(temp)
+        self.assertEqual(expected, result)
