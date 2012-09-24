@@ -52,16 +52,21 @@ def get_authors_bibtex(authors):
 
     return author_list
 
-
-
-
-def clean_entry(field, content):
+def clean_entry(field, content, format='bibtex'):
     """
-    
+    Clean up a field content for a specific format
+
+    field: field (like journal, author...)
+    concent: content of the field
+    format: bibtex or latex.
     """
     if field == 'author':
-        #TODO or the other one...
-        return get_authors_bibtex(content)
+        if format == 'bibtex':
+            return get_authors_bibtex(content)
+        elif format == 'latex':
+            return get_authors(content)
+        else:
+            raise ValueError
     elif field == 'journal':
         return content['name']
     elif field == 'pages':
