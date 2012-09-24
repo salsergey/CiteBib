@@ -39,7 +39,7 @@ def get_authors(authors, short=0):
 
 def get_authors_bibtex(authors):
     """
-
+    Format the authors to the bibtex format
     """
     author_list = ''
     for num, author in enumerate(authors):
