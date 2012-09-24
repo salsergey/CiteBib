@@ -31,12 +31,31 @@ from bibtexentry import get_authors
 
 class TestGetAuthor(unittest.TestCase):
 
-    #@unittest.skip('not fully implemented')
+    def test_one_author(self):
+        authors = [{'name': 'Foo, J', 'id': 'FooJ'}]
+        expected = 'J. Foo'
+        result = get_authors(authors)
+        self.assertEqual(expected, result)
+
+    def test_two_authors(self):
+        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}]
+        expected = 'J. Foo and R. Bar'
+        result = get_authors(authors)
+        self.assertEqual(expected, result)
+
+
     def test_simple_list(self):
         authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
         expected = 'J. Foo, R. Bar and D. Foobar'
         result = get_authors(authors)
         self.assertEqual(expected, result)
+
+    def test_short_list(self):
+        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
+        expected = 'J. Foo et al.'
+        result = get_authors(authors, 1)
+        self.assertEqual(expected, result)
+
 
 from bibtexentry import get_authors_bibtex
 
