@@ -27,19 +27,20 @@ class TestCleanLastName(unittest.TestCase):
 
 
 
-#from bibtexentry import get_authors
-#
-#class TestGetAuthor(unittest.TestCase):
-#
-#    def test_simple_list(self):
-#        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
-#        expected = 'Foo, J. and Bar, R. and Foobar, D.'
-#        result = get_authors(authors)
-#        self.assertEqual(expected, result)
+from bibtexentry import get_authors
+
+class TestGetAuthor(unittest.TestCase):
+
+    @unittest.skip('not fully implemented')
+    def test_simple_list(self):
+        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
+        expected = 'J. Foo, R. Bar and D. Foobar'
+        result = get_authors(authors)
+        self.assertEqual(expected, result)
 
 from bibtexentry import get_authors_bibtex
 
-class TestGetAuthor(unittest.TestCase):
+class TestGetAuthorBibtex(unittest.TestCase):
 
     def test_simple_list(self):
         authors = [{'name': 'Foobar, D', 'id': 'FoobarD'}]
