@@ -70,7 +70,7 @@ def clean_entry(field, content, format='bibtex'):
     elif field == 'journal':
         return content['name']
     elif field == 'pages':
-        return content #FIXME: remove "to" ?
+        return re.sub('\sto\s', '-', content)
     else:
         return content
 
