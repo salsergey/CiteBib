@@ -62,7 +62,7 @@ def main():
             for field in entries[entry].keys():
                 #If the field is requested
                 if field in reqfields[tmp['type']]:
-                    tmp[field] = clean_entry(field, entries[entry][field]) #TODO call this function in writer
+                    tmp[field] = clean_entry(field, entries[entry][field], format='bibtex') #FIXME format
             #Push the entry
             new[entry] = tmp
     pprint(new)
