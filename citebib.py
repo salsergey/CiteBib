@@ -17,7 +17,7 @@ def main(bibfiles, texfiles, output):
     from pprint import pprint
 
 
-    from citebib.bibtexentry import clean_entry
+    #from citebib.bibtexentry import clean_entry
 
 
 
@@ -62,7 +62,8 @@ def main(bibfiles, texfiles, output):
             for field in entries[entry].keys():
                 #If the field is requested
                 if field in reqfields[tmp['type']]:
-                    tmp[field] = clean_entry(field, entries[entry][field], format='bibtex') #FIXME format
+                    #tmp[field] = clean_entry(field, entries[entry][field], format='bibtex') #FIXME format
+                    tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
     pprint(new)
