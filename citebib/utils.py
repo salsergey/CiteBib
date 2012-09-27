@@ -17,8 +17,10 @@
 
 def uniq(alist): 
    """
-   Uniqify a list, 
-   order preserving
+   Uniqify a list (order preserving)
+
+   :param alist: list to uniqify
+   :returns: uniqified list
    """
    checked = []
    for e in alist:

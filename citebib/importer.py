@@ -20,7 +20,12 @@ import sys
 from citebib.utils import uniq
 
 def get_citations(texfilename):
-    """Get all citations in a tex file"""
+    """
+    Get all citations in a tex file
+    
+    :param texfilename: tex file path
+    :returns: a list of citations
+    """
     
     with open(texfilename,'r') as tex:
     
@@ -57,13 +62,13 @@ from citebib.bibtexparser import BibTexParser
 #from citebib.bibtexentry import BibtexEntry
 def get_bibtex_entries(filename):
     """
-    Parse a bibtex
+    Parse a bibtex file and return the content
 
-    return: a dictionnary; key=ID, content=entry
+    :param filename: bibtex filepath
+    :returns: a dictionnary; key=ID, content=entry
     """
-    bibfile = open(filename, 'r') #TODO exception
-    biblio = BibTexParser(bibfile)
-    bibfile.close()
+    with open(filename, 'r') as bibfile: 
+        biblio = BibTexParser(bibfile)
     entries = biblio.parse()[0]
 
     entries_hash = {}
