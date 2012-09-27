@@ -8,8 +8,14 @@ from bibtexentry import clean_last_name
 class TestCleanLastName(unittest.TestCase):
     
     def test_simple_lastname(self):
-        lastname = ' A. '
+        lastname = ' A '
         expected = 'A.'
+        result = clean_last_name(lastname)
+        self.assertEqual(expected, result)
+
+    def test_souble_lastname(self):
+        lastname = ' AB '
+        expected = 'A. B.'
         result = clean_last_name(lastname)
         self.assertEqual(expected, result)
 
