@@ -5,6 +5,22 @@
 import configparser
 import os
 
+def load_config(format, name='default', location='~/.citebib'):
+    """
+    Load a configuration
+
+    :param format: biblio format (latex or bibtex)
+    :param name: name of the configuration
+    :param location:
+    :returns: the configuration
+    """
+    filename = str(name) + '.ini'
+    filepath = os.path.join(os.path.expanduser(location), format, filename)
+
+    config = configparser.ConfigParser()
+    config.read(filepath)
+    return config #FIXME not a good idea...
+
 def check_default_config(location='~/.citebib'):
     """
     Check if default configuration files exists.
@@ -100,3 +116,4 @@ if __name__ == '__main__':
     #write_default_config_latex('latex.ini')
     #write_default_config_bibtex('bibtex.ini')
     check_default_config()
+    print(load_config('bibtex'))
