@@ -3,8 +3,39 @@
 
 
 import configparser
+import os
 
-def write_default_config_latex(inifile):
+def check_default_config(location='~/.citebib'):
+    """
+    Check if default configuration files exists.
+    If it does not, create them
+    """
+    formats = ('latex', 'bibtex')
+    for format in formats:
+        path = os.path.join(os.path.expanduser(location), format)
+        if not os.path.exists(path):
+            os.makedirs(path)
+        file = os.path.join(path, 'default.ini')
+        if not os.access(file, os.F_OK):
+            write_default_config(file, format)
+
+def write_default_config(inifile, format):
+    """
+    This function is a wrapper to write default config files
+
+
+    :param inifile: ini file name
+    :param format: biblio format (latex or bibtex)
+    """
+    if format == 'latex':
+        _write_default_config_latex(inifile)
+    elif format == 'bibtex':
+        _write_default_config_bibtex(inifile)
+    else:
+        raise ValueError
+
+
+def _write_default_config_latex(inifile):
     """
     Write a default configuration file for latex
 
@@ -18,7 +49,7 @@ def write_default_config_latex(inifile):
 
 
     for entry in fields:
-        content = {'format': fields[entry], 'authorlength': 2}
+        content = {'format': fields[entry], 'authorlength': 2} #TODO
         config[entry] = content
 
 
@@ -26,7 +57,7 @@ def write_default_config_latex(inifile):
         config.write(configfile)
 
 
-def write_default_config_bibtex(inifile):
+def _write_default_config_bibtex(inifile):
     """
     Write a default configuration file for bibtex
 
@@ -66,5 +97,6 @@ def write_default_config_bibtex(inifile):
 
 
 if __name__ == '__main__':
-    write_default_config_latex('latex.ini')
-    write_default_config_bibtex('bibtex.ini')
+    #write_default_config_latex('latex.ini')
+    #write_default_config_bibtex('bibtex.ini')
+    check_default_config()
