@@ -66,5 +66,5 @@ def write_default_config_bibtex(inifile):
 
 
 if __name__ == '__main__':
-    write_default_config_latex('toto.ini')
+    write_default_config_latex('latex.ini')
     write_default_config_bibtex('bibtex.ini')
