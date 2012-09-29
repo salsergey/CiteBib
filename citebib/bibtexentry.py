@@ -77,7 +77,7 @@ def clean_entry(field, content, format='bibtex'):
         elif format == 'latex':
             return get_authors(content)
         else:
-            raise ValueError
+            raise ValueError('Wrong format: %s' % format)
     elif field == 'journal':
         return content['name']
     elif field == 'pages':

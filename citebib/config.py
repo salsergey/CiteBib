@@ -48,7 +48,7 @@ def write_default_config(inifile, format):
     elif format == 'bibtex':
         _write_default_config_bibtex(inifile)
     else:
-        raise ValueError
+        raise ValueError('Wrong format: %s' % format)
 
 
 def _write_default_config_latex(inifile):
