@@ -89,7 +89,8 @@ def _write_default_config_latex(inifile):
     :param inifile: ini file name
     """
     fields = {
-        'article' : ('author, journal (year)'),  
+        'article' : ('author, journal, \\textbf{volume}, pages (year)'),  
+        'book' : ('author, title, publisher (year)'),  
     }
 
     config = configparser.ConfigParser()
