@@ -28,6 +28,7 @@ def write_latex(entries, config, out=sys.stdout):
     """
 
     for entry in entries:
+        out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
         style = config.get_style(entries[entry]['type'])
         for field in entries[entry]:
