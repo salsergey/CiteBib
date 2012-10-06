@@ -56,6 +56,18 @@ class Configuration():
             return self.config[section].get('format')
         else:
             raise ValueError('Wrong format')
+
+    def get_number_authors(self, section):
+        """
+        Return the number of authors (relevant only for latex format)
+
+        :param section: Section of the config file
+        :returns: float
+        """
+        if self.format == 'latex':
+            return self.config[section].getint('authorlength')
+        else:
+            raise ValueError('Wrong format')
                 
 
 def check_default_config(location='~/.citebib'):

@@ -28,11 +28,13 @@ def write_latex(entries, config, out=sys.stdout):
     """
 
     for entry in entries:
+        authors_list_length = config.get_number_authors(entries[entry]['type'])
+        authors_list_length = 0 #FIXME: bugs... somewhere
         out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
         style = config.get_style(entries[entry]['type'])
         for field in entries[entry]:
-            data = clean_entry(field, entries[entry][field], format='latex')
+            data = clean_entry(field, entries[entry][field], format='latex', number_authors_name=authors_list_length)
             style = re.sub(field, data, style)
         out.write(style)
         out.write('\n')
