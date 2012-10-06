@@ -21,16 +21,26 @@ class Configuration():
         self.config = configparser.ConfigParser()
         self.config.read(filepath)
 
-    def get_style(self, section):
+    def get_reqfields(self, section):
+        """
+        Return reqfields
+        
+        :param section: Section of the config file
+        :returns: list
+        """
         if self.format == 'bibtex':
             content = []
             for element in self.config[section]:
                 if self.config[section].getboolean(element):
                     content.append(element)
         elif self.format == 'latex':
-            content = {}
-            for element in self.config[section]:
-                content.update({element: self.config[section].get(element)})
+            content = [] #TODO
+            possibilities = ['publisher', 'institution', 'title', 'booktitle', 
+            'author', 'pages', 'volume', 'editor', 'year', 'bookpublisher', 'journal']
+            line = self.config[section].get(format)
+            for possibility in possibilities:
+                if possibility in line:
+                    content.append(possibility)
         return(content)
                 
 

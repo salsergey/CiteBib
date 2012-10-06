@@ -19,6 +19,8 @@ def main(bibfiles, texfiles, format, output):
     from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
 
+    from citebib.config import Configuration
+
     #Load the tex
     citations = []
     for texfile in texfiles:
@@ -29,6 +31,9 @@ def main(bibfiles, texfiles, format, output):
     entries = {}
     for bibfile in bibfiles:
         entries.update(get_bibtex_entries(bibfile)) 
+
+    #Load configuration
+    config = Configuration(format)
 
     reqfields = {
         'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
@@ -58,7 +63,7 @@ def main(bibfiles, texfiles, format, output):
             tmp['type'] = entries[entry]['type']
             for field in entries[entry].keys():
                 #If the field is requested
-                if field in reqfields[tmp['type']]:
+                if field in config.get_reqfields(tmp['type']):
                     tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
