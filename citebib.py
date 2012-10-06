@@ -72,8 +72,13 @@ def main(bibfiles, texfiles, format, output):
 
     #write it!
     from citebib.writer import write_bibtex
+    from citebib.writer import print_latex_biblio
     #TODO depend on format
-    write_bibtex(new, output)
+    if format == 'bibtex':
+        write_bibtex(new, output)
+    elif format == 'latex':
+        with open(output, 'w') as f:
+            print_latex_biblio(new, config, f) 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
@@ -90,4 +95,5 @@ if __name__ == '__main__':
     bibfiles = args.b
     texfiles = args.t
     format = 'bibtex'
+    format = 'latex'
     main(bibfiles, texfiles, format, output)

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import re
 
 from citebib.bibtexentry import clean_entry
 
@@ -22,19 +23,20 @@ def write_bibtex(entries, filename):
         output.write(block)
 
 
-def print_latex_biblio(entries, out=sys.stdout):
+def print_latex_biblio(entries, config, out=sys.stdout):
     """
     Print entries to the latex format
     """
 
-    #TODO should depend on filetype !
-    #Example here for an article...
-    separator = ', '
     for entry in entries:
-        line = ''
-        line += clean_entry('author', entries[entry]['author'], format='latex')
-        line += separator
-        line += clean_entry('journal', entries[entry]['journal'], format='latex')
-        line += ' (' + clean_entry('year', entries[entry]['year'], format='latex') + ')'
+        #Get the style from config
+        print('------------')
+        print(entry)
+        style = config.get_style(entries[entry]['type'])
+        for field in entries[entry]:
+            print(clean_entry(field, entries[entry][field], format='latex'))
+            data = clean_entry(field, entries[entry][field], format='latex')
+            style = re.sub(field, data, style)
 
-        out.write(line)
+        out.write(style)
+        out.write('\n')
