@@ -12,7 +12,7 @@ def write_bibtex(entries, filename):
     with open(filename, 'w') as output:
         block = ''
         for entry in entries:
-            block += '@' + str(entries[entry]['type']) + '{'
+            block += '@' + str(entries[entry]['type']) + '{' + entry + ','
             for field in entries[entry]:
                 if field != 'type':
                     content = clean_entry(field, entries[entry][field], format='bibtex')
