@@ -3,11 +3,11 @@
 
 
 import argparse
-
+import sys
 from citebib import info
 
 
-def main(bibfiles, texfiles, format, output):
+def main(bibfiles, texfiles, format, output=sys.stdout):
     """
     Idea for the structure
 
@@ -58,11 +58,12 @@ def main(bibfiles, texfiles, format, output):
     #write it!
     from citebib.writer import write_bibtex
     from citebib.writer import write_latex
-    with open(output, 'w') as f:
-        if format == 'bibtex':
-            write_bibtex(new, f)
-        elif format == 'latex':
-            write_latex(new, config, f) 
+    if format == 'bibtex':
+        write_bibtex(new, output)
+    elif format == 'latex':
+        write_latex(new, config, output) 
+    else:
+        raise ValueError('Wrong format value')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
@@ -70,14 +71,16 @@ if __name__ == '__main__':
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
     parser.add_argument('-b', metavar='BIBTEX', nargs='+', required=True, help='Bibtex file(s)')
     parser.add_argument('-t', metavar='TEX', nargs='+', required=True, help='Tex file(s)')
-    parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output')
+    parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output (default: stdout)')
     args = parser.parse_args()
-
-    #TODO If no output... 
-    output = '/tmp/toto'
 
     bibfiles = args.b
     texfiles = args.t
     format = 'bibtex'
     format = 'latex'
-    main(bibfiles, texfiles, format, output)
+    if args.o == None:
+        main(bibfiles, texfiles, format)
+    else:
+        with open(args.o, 'w') as f:
+            main(bibfiles, texfiles, format, f)
+
