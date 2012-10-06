@@ -19,7 +19,9 @@ def main(bibfiles, texfiles, format, output):
     from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
 
-    from citebib.config import Configuration
+    from citebib.config import Configuration, check_default_config
+
+    check_default_config()
 
     #Load the tex
     citations = []
@@ -55,7 +57,7 @@ def main(bibfiles, texfiles, format, output):
 
     #write it!
     from citebib.writer import write_bibtex
-    from citebib.writer import print_latex_biblio
+    from citebib.writer import write_latex
     with open(output, 'w') as f:
         if format == 'bibtex':
             write_bibtex(new, f)
