@@ -23,7 +23,7 @@ class Configuration():
 
     def get_reqfields(self, section):
         """
-        Return reqfields
+        Return required fields
         
         :param section: Section of the config file
         :returns: list
@@ -46,6 +46,12 @@ class Configuration():
         return(content)
 
     def get_style(self, section):
+        """
+        Return the style (relevant only for latex format)
+
+        :param section: Section of the config file
+        :returns: string
+        """
         if self.format == 'latex':
             return self.config[section].get('format')
         else:
@@ -111,6 +117,8 @@ def _write_default_config_bibtex(inifile):
 
     :param inifile: ini file name
     """
+    #TODO: this is messy. Look for suitable configparser function
+    #TODO: prefer a smart ordering (like alpha)
     reqfields = {
         'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
         'book' : ('author', 'editor', 'title', 'publisher', 'year'),
@@ -145,8 +153,4 @@ def _write_default_config_bibtex(inifile):
 
 
 if __name__ == '__main__':
-    #write_default_config_latex('latex.ini')
-    #write_default_config_bibtex('bibtex.ini')
-    check_default_config()
-    conf = Configuration('latex')
-    print(conf.get_style('article'))
+    pass
