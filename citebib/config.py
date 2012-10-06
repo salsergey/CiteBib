@@ -5,21 +5,34 @@
 import configparser
 import os
 
-def load_config(format, name='default', location='~/.citebib'):
+class Configuration():
     """
-    Load a configuration
 
     :param format: biblio format (latex or bibtex)
     :param name: name of the configuration
     :param location:
     :returns: the configuration
     """
-    filename = str(name) + '.ini'
-    filepath = os.path.join(os.path.expanduser(location), format, filename)
+    def __init__(self, format, name='default', location='~/.citebib'):
+        self.format = format
+        filename = str(name) + '.ini'
+        filepath = os.path.join(os.path.expanduser(location), str(format), filename)
 
-    config = configparser.ConfigParser()
-    config.read(filepath)
-    return config #FIXME not a good idea...
+        self.config = configparser.ConfigParser()
+        self.config.read(filepath)
+
+    def get_style(self, section):
+        if self.format == 'bibtex':
+            content = []
+            for element in self.config[section]:
+                if self.config[section].getboolean(element):
+                    content.append(element)
+        elif self.format == 'latex':
+            content = {}
+            for element in self.config[section]:
+                content.update({element: self.config[section].get(element)})
+        return(content)
+                
 
 def check_default_config(location='~/.citebib'):
     """
@@ -116,4 +129,5 @@ if __name__ == '__main__':
     #write_default_config_latex('latex.ini')
     #write_default_config_bibtex('bibtex.ini')
     check_default_config()
-    print(load_config('bibtex'))
+    conf = Configuration('latex')
+    print(conf.get_style('article'))
