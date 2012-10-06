@@ -69,6 +69,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
                              epilog='')
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
+    parser.add_argument('--latex', help='LateX type output', action='store_true')
     parser.add_argument('-b', metavar='BIBTEX', nargs='+', required=True, help='Bibtex file(s)')
     parser.add_argument('-t', metavar='TEX', nargs='+', required=True, help='Tex file(s)')
     parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output (default: stdout)')
@@ -76,8 +77,10 @@ if __name__ == '__main__':
 
     bibfiles = args.b
     texfiles = args.t
-    format = 'bibtex'
-    format = 'latex'
+    if args.latex:
+        format = 'latex'
+    else:
+        format = 'bibtex'
     if args.o == None:
         main(bibfiles, texfiles, format)
     else:
