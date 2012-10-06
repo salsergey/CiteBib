@@ -37,11 +37,19 @@ class Configuration():
             content = [] #TODO
             possibilities = ['publisher', 'institution', 'title', 'booktitle', 
             'author', 'pages', 'volume', 'editor', 'year', 'bookpublisher', 'journal']
-            line = self.config[section].get(format)
+            line = self.config[section].get('format')
             for possibility in possibilities:
                 if possibility in line:
                     content.append(possibility)
+        else:
+            raise ValueError('Wrong format')
         return(content)
+
+    def get_style(self, section):
+        if self.format == 'latex':
+            return self.config[section].get('format')
+        else:
+            raise ValueError('Wrong format')
                 
 
 def check_default_config(location='~/.citebib'):
