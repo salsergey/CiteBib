@@ -16,11 +16,15 @@ def clean_last_name(name):
     name = re.sub("^(\w)$", "\g<1>.", name) # P -> P.
     return name
 
-def get_authors(authors, short=0):
+def get_authors_latex(authors, short=0):
     """ 
     Get a formated author list
     short: max number of authors, others are in 'et al.'
             if == 0, it means infinite
+
+    :param authors: Raw authors list
+    :param short: cleaned authors list length
+    :returns: string
     """
     if short == 0: #zero means infinite
         author_list = authors
@@ -44,13 +48,16 @@ def get_authors(authors, short=0):
             author_string += ', '
     #Add et al if the list is too long...
     if short != 0 and short < len(authors):
-        author_string += ' et al.'
+        author_string += ' \\textit{et al.}'
     
     return author_string
 
 def get_authors_bibtex(authors):
     """
     Format the authors to the bibtex format
+
+    :param authors: Raw authors list
+    :returns: list
     """
     author_list = ''
     for num, author in enumerate(authors):
@@ -63,19 +70,21 @@ def get_authors_bibtex(authors):
 
     return author_list
 
-def clean_entry(field, content, format='bibtex'):
+def clean_entry(field, content, format='bibtex', number_authors_name=0):
     """
     Clean up a field content for a specific format
 
-    field: field (like journal, author...)
-    concent: content of the field
-    format: bibtex or latex.
+    :param field: field (like journal, author...)
+    :param content: content of the field
+    :param format: bibtex or latex.
+    :param number_authors_name: Length of the author list (Latex format)
+    :returns: String
     """
     if field == 'author':
         if format == 'bibtex':
             return get_authors_bibtex(content)
         elif format == 'latex':
-            return get_authors(content)
+            return get_authors_latex(content, number_authors_name)
         else:
             raise ValueError('Wrong format: %s' % format)
     elif field == 'journal':
