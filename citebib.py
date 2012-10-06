@@ -7,20 +7,17 @@ import argparse
 from citebib import info
 
 
-
-
-def main(bibfiles, texfiles, output):
+def main(bibfiles, texfiles, format, output):
     """
     Idea for the structure
+
+    :param bibfiles: list of bibfiles
+    :param texfiles: list of texfiles
+    :param format: Output format (latex or bibtex)
+    :param output: Output file
     """
     from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
-
-
-    #from citebib.bibtexentry import clean_entry
-
-
-
 
     #Load the tex
     citations = []
@@ -62,7 +59,6 @@ def main(bibfiles, texfiles, output):
             for field in entries[entry].keys():
                 #If the field is requested
                 if field in reqfields[tmp['type']]:
-                    #tmp[field] = clean_entry(field, entries[entry][field], format='bibtex') #FIXME format
                     tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
@@ -71,6 +67,7 @@ def main(bibfiles, texfiles, output):
 
     #write it!
     from citebib.writer import write_bibtex
+    #TODO depend on format
     write_bibtex(new, output)
 
 if __name__ == '__main__':
@@ -87,4 +84,5 @@ if __name__ == '__main__':
 
     bibfiles = args.b
     texfiles = args.t
-    main(bibfiles, texfiles, output)
+    format = 'bibtex'
+    main(bibfiles, texfiles, format, output)
