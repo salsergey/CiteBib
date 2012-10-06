@@ -56,11 +56,11 @@ def main(bibfiles, texfiles, format, output):
     #write it!
     from citebib.writer import write_bibtex
     from citebib.writer import print_latex_biblio
-    if format == 'bibtex':
-        write_bibtex(new, output)
-    elif format == 'latex':
-        with open(output, 'w') as f:
-            print_latex_biblio(new, config, f) 
+    with open(output, 'w') as f:
+        if format == 'bibtex':
+            write_bibtex(new, f)
+        elif format == 'latex':
+            write_latex(new, config, f) 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,

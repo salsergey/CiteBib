@@ -6,24 +6,23 @@ import re
 
 from citebib.bibtexentry import clean_entry
 
-def write_bibtex(entries, filename):
+def write_bibtex(entries, out=sys.stdout):
     """
     Write all entries in filename
     """
-    with open(filename, 'w') as output:
-        block = ''
-        for entry in entries:
-            block += '@' + str(entries[entry]['type']) + '{' + entry + ','
-            for field in entries[entry]:
-                if field != 'type':
-                    content = clean_entry(field, entries[entry][field], format='bibtex')
-                    block += "\n\t" + str(field) + ' = {' + content + '},' 
+    block = ''
+    for entry in entries:
+        block += '@' + str(entries[entry]['type']) + '{' + entry + ','
+        for field in entries[entry]:
+            if field != 'type':
+                content = clean_entry(field, entries[entry][field], format='bibtex')
+                block += "\n\t" + str(field) + ' = {' + content + '},' 
     
-            block += '\n}\n\n'
-        output.write(block)
+        block += '\n}\n\n'
+    out.write(block)
 
 
-def print_latex_biblio(entries, config, out=sys.stdout):
+def write_latex(entries, config, out=sys.stdout):
     """
     Print entries to the latex format
     """
