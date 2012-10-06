@@ -35,23 +35,6 @@ def main(bibfiles, texfiles, format, output):
     #Load configuration
     config = Configuration(format)
 
-    reqfields = {
-        'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
-        'book' : ('author','editor','title','publisher','year'),
-        'booklet' : ('title'),
-        'conference' : ('author','title','booktitle','year'),
-        'inproceedings' : ('author','title','booktitle','year'),
-        'inbook' : ('author','editor','title','chapter','pages','publisher','year'),
-        'incollection' : ('author','title','bookpublisher','year'),
-        'manual' : ('title'),
-        'mastersthesis' : ('author','title','school','year'),
-        'misc' : (),
-        'phdthesis' : ('author','title','school','year'),
-        'proceedings' : ('title','year'),
-        'techreport' : ('author','title','institution','year')
-        }
-
-
     #Create a new dir with reqfields only
     new = dict()
 
@@ -73,7 +56,6 @@ def main(bibfiles, texfiles, format, output):
     #write it!
     from citebib.writer import write_bibtex
     from citebib.writer import print_latex_biblio
-    #TODO depend on format
     if format == 'bibtex':
         write_bibtex(new, output)
     elif format == 'latex':

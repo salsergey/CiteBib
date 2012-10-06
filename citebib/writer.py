@@ -30,13 +30,9 @@ def print_latex_biblio(entries, config, out=sys.stdout):
 
     for entry in entries:
         #Get the style from config
-        print('------------')
-        print(entry)
         style = config.get_style(entries[entry]['type'])
         for field in entries[entry]:
-            print(clean_entry(field, entries[entry][field], format='latex'))
             data = clean_entry(field, entries[entry][field], format='latex')
             style = re.sub(field, data, style)
-
         out.write(style)
         out.write('\n')
