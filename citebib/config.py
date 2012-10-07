@@ -107,15 +107,15 @@ def _write_default_config_latex(inifile):
     :param inifile: ini file name
     """
     fields = {
-        'article' : ('author, journal, \\textbf{volume}, pages (year)'),  
-        'book' : ('author, title, publisher (year)'),  
+        'article' : ('author, journal, \\textbf{volume}, pages (year).'),  
+        'book' : ('author, title, publisher (year).'),  
     }
 
     config = configparser.ConfigParser()
 
 
     for entry in fields:
-        content = {'format': fields[entry], 'authorlength': 2} #TODO
+        content = {'format': fields[entry], 'authorlength': 0} #TODO
         config[entry] = content
 
 
