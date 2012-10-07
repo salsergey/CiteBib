@@ -22,12 +22,12 @@ def write_bibtex(entries, out=sys.stdout):
     out.write(block)
 
 
-def write_latex(entries, config, out=sys.stdout):
+def write_latex(ordered_list, entries, config, out=sys.stdout):
     """
     Print entries to the latex format
     """
 
-    for entry in entries:
+    for entry in ordered_list:
         authors_list_length = config.get_number_authors(entries[entry]['type'])
         authors_list_length = 0 #FIXME: bugs... somewhere
         out.write('\\bibitem{%s}\n' % entry)
