@@ -61,7 +61,7 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
     if format == 'bibtex':
         write_bibtex(new, output)
     elif format == 'latex':
-        write_latex(citation, new, config, output) 
+        write_latex(citations, new, config, output) 
     else:
         raise ValueError('Wrong format value')
 

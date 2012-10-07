@@ -10,6 +10,7 @@ def write_bibtex(entries, out=sys.stdout):
     """
     Write all entries in filename
     """
+    #TODO: we must check if all citations are available as in write_latex
     block = ''
     for entry in entries:
         block += '@' + str(entries[entry]['type']) + '{' + entry + ','
@@ -28,7 +29,11 @@ def write_latex(ordered_list, entries, config, out=sys.stdout):
     """
 
     for entry in ordered_list:
-        authors_list_length = config.get_number_authors(entries[entry]['type'])
+        try:
+            authors_list_length = config.get_number_authors(entries[entry]['type'])
+        except KeyError:
+            #TODO print something
+            continue
         authors_list_length = 0 #FIXME: bugs... somewhere
         out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
