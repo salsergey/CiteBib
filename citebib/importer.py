@@ -37,11 +37,9 @@ def get_citations(texfilename):
         allcite = []
     
         for line in tex:
-            #TODO: should handle commented lines
-            #Very basic commented line escape
-            if re.match('^\%', line):
-                continue
-            
+            #handle commented lines or parts
+            line = line.split('%')[0]
+
             #we get citations
             results = cite.findall(line)
             if results: 

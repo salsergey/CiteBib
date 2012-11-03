@@ -51,7 +51,6 @@ class TestGetCitations(unittest.TestCase):
         result = get_citations(temp)
         self.assertEqual(expected, result)
 
-    @unittest.skip("Not yet implemented!")
     def test_commented_citations(self):
         text = """
         I want this one \cite{Foo1999} %but not that one \cite{Bar2000}
