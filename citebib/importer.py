@@ -33,7 +33,7 @@ def get_citations(texfilename):
         #works with bibtex, but not recommanded as said on wikipedia
             
         #Catch citations
-        cite = re.compile('cite({|\[.+?\]{)((\w|-|,|\s)+)}') #Can contain spaces?
+        cite = re.compile('cite(|t|p|t\*|p\*|alt|alp|alt\*|alp\*)({|\[.+?\]{)((\w|-|,|\s)+)}') #Can contain spaces?
         allcite = []
     
         for line in tex:
@@ -48,7 +48,7 @@ def get_citations(texfilename):
                 # loop on all results for the line
                 for el in results:
                     #sometimes, cite contains several citations
-                    foo = re.sub("\s", "", str(el[1])) #remove extra spaces
+                    foo = re.sub("\s", "", str(el[2])) #remove extra spaces
                     foo = re.split(",", foo)
                     allcite.extend(foo)
     #uniqify the list
