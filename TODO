@@ -5,9 +5,11 @@ One needs to think about the CLI
 * Specify a customize configuration
 
 
-* bug parser on Vigil1994 (\n in name)
 
 * Accent in fields
 
-
 * natibib support: 2 options case missing
+
+DONE:
+* bug parser on Vigil1994 (\n in name)
+* Comments in tex files
