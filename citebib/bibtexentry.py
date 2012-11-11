@@ -3,7 +3,7 @@
 
 
 import re
-
+from citebib.converter import string_to_latex
 
 def clean_last_name(name):
     """
@@ -80,13 +80,18 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
     :param number_authors_name: Length of the author list (Latex format)
     :returns: String
     """
+
     if field == 'author':
         if format == 'bibtex':
-            return get_authors_bibtex(content)
+            auth = get_authors_bibtex(content)
+            return string_to_latex(auth)
         elif format == 'latex':
-            return get_authors_latex(content, number_authors_name)
+            auth = get_authors_latex(content, number_authors_name)
+            return string_to_latex(auth)
         else:
             raise ValueError('Wrong format: %s' % format)
+    elif field == 'title':
+        return string_to_latex(content)
     elif field == 'journal':
         return content['name']
     elif field == 'pages':

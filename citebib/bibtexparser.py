@@ -264,7 +264,8 @@ class BibTexParser(object):
         val = self.strip_braces(val)
         val = self.string_subst(val)
         """alter based on particular key types"""
-        return unicodedata.normalize('NFKD', val).replace('\x00', '').replace('\x1A', '')
+        return val
+        #return unicodedata.normalize('NFKD', val).replace('\x00', '').replace('\x1A', '')
 
 
     def add_key(self, key):
