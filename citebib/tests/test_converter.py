@@ -27,3 +27,9 @@ class TestUppercaseProtection(unittest.TestCase):
         result = protect_uppercase(string)
         expected = '{A}'
         self.assertEqual(result, expected)
+
+    def test_lowercase(self):
+        string = 'a'
+        result = protect_uppercase(string)
+        expected = 'a'
+        self.assertEqual(result, expected)
