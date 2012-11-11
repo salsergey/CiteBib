@@ -66,17 +66,31 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
         raise ValueError('Wrong format value')
 
 if __name__ == '__main__':
+
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
                              epilog='')
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
     parser.add_argument('--latex', help='LateX type output', action='store_true')
-    parser.add_argument('-b', metavar='BIBTEX', nargs='+', required=True, help='Bibtex file(s)')
+    parser.add_argument('-c', metavar='CONFIG', required=False, help='Configuration file with bibtex paths')
+    parser.add_argument('-b', metavar='BIBTEX', nargs='*', required=False, help='Bibtex file(s)')
     parser.add_argument('-t', metavar='TEX', nargs='+', required=True, help='Tex file(s)')
     parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output (default: stdout)')
     args = parser.parse_args()
 
     bibfiles = args.b
     texfiles = args.t
+
+    from citebib.config import ConfigBibtex
+
+    if bibfiles is None:
+        if args.c is not None:
+            import os.path
+            location, name = os.path.split(args.c)
+            bib = ConfigBibtex(name, location)
+        else:
+            bib = ConfigBibtex()
+        bibfiles = bib.get_bibtex_paths()
+
     if args.latex:
         format = 'latex'
     else:

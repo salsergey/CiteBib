@@ -5,18 +5,42 @@
 import configparser
 import os
 
+
+class ConfigBibtex():
+    """
+    Load bitex files from configuration files
+    :param name: name of the configuration
+    :param location: path of the config directory
+    """
+    def __init__(self, name='bibtex.conf', location='~/.citebib'):
+        filename = str(name)
+        filepath = os.path.join(os.path.expanduser(location), filename)
+
+        self.config = configparser.ConfigParser()
+        self.config.read(filepath)
+
+    def get_bibtex_paths(self):
+        """
+        Get a list containing paths of bibtex files
+        """
+        paths = []
+        for section in self.config.sections():
+            path = os.path.expanduser(self.config[section].get('path'))
+            paths.append(path)
+        return paths
+
 class ConfigFormat():
     """
     Load custom formats from configuration files
 
     :param format: biblio format (latex or bibtex)
     :param name: name of the configuration
-    :param location:
+    :param location: path of the config directory
     :returns: the configuration
     """
-    def __init__(self, format, name='default', location='~/.citebib'):
+    def __init__(self, format, name='default.conf', location='~/.citebib'):
         self.format = format
-        filename = str(name) + '.ini'
+        filename = str(name) 
         filepath = os.path.join(os.path.expanduser(location), str(format), filename)
 
         self.config = configparser.ConfigParser()
@@ -81,7 +105,7 @@ def check_default_config(location='~/.citebib'):
         path = os.path.join(os.path.expanduser(location), format)
         if not os.path.exists(path):
             os.makedirs(path)
-        file = os.path.join(path, 'default.ini')
+        file = os.path.join(path, 'default.conf')
         if not os.access(file, os.F_OK):
             write_default_config(file, format)
 
