@@ -5,7 +5,7 @@
 import configparser
 import os
 
-class Configuration():
+class ConfigFormat():
     """
 
     :param format: biblio format (latex or bibtex)

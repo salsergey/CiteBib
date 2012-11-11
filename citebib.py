@@ -19,7 +19,7 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
     from citebib.importer import get_bibtex_entries, get_citations
     from pprint import pprint
 
-    from citebib.config import Configuration, check_default_config
+    from citebib.config import ConfigFormat, check_default_config
 
     check_default_config()
 
@@ -35,7 +35,7 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
         entries.update(get_bibtex_entries(bibfile)) 
 
     #Load configuration
-    config = Configuration(format)
+    config = ConfigFormat(format)
 
     #Create a new dir with reqfields only
     new = dict()
