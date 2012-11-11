@@ -7,6 +7,7 @@ import os
 
 class ConfigFormat():
     """
+    Load custom formats from configuration files
 
     :param format: biblio format (latex or bibtex)
     :param name: name of the configuration
