@@ -1,0 +1,1 @@
+Search.setIndex({filenames:["index"],objtypes:{},objects:{},terms:{licens:0,project:0,author:0,version:0,document:0,gpl:0,françoi:0,code:0,com:0,citebib:0,search:0,welcom:0,content:0,page:0,indic:0,tabl:0,boulogn:0,sourc:0,modul:0,devel:0,index:0,novemb:0,github:0,gener:0},objnames:{},titles:["Welcome to CiteBib&#8217;s documentation!"]})
