@@ -6,6 +6,15 @@
 Welcome to CiteBib's documentation!
 ===================================
 
+
+:Authors: François Boulogne
+:Source code: `github.com project <https://github.com/sciunto/CiteBib>`_
+:Generated: |today|
+:License: GPL v3
+:Version: |release|
+
+
+
 Contents:
 
 .. toctree::
