@@ -1,5 +1,5 @@
-* on stdout, get a formatted ref by giving a key.
-One needs to think about the CLI
+TODO
+====
 * number of authors for latex output -> et al.
 * default config file: latex style...
 
@@ -10,8 +10,16 @@ One needs to think about the CLI
 
 * natbib support: 2 options case missing
 
-DONE:
+
+TO FIX
+======
+* Accent in raw mode. Doh...
+
+
+DONE
+====
 * bug parser on Vigil1994 (\n in name)
 * Comments in tex files
 * Accent in fields
 * Specify a customize configuration with bibtex paths
+* on stdout, get a formatted ref by giving a key.
