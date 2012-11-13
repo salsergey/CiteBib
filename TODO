@@ -11,6 +11,8 @@ TODO
 * natbib support: 2 options case missing
 
 
+* citekey: support of regex in key.
+
 TO FIX
 ======
 * Accent in raw mode. Doh...
