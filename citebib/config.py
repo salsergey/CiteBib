@@ -58,7 +58,7 @@ class ConfigFormat():
             for element in self.config[section]:
                 if self.config[section].getboolean(element):
                     content.append(element)
-        elif self.format == 'latex':
+        elif self.format == 'latex' or self.format == 'raw':
             content = [] #TODO
             possibilities = ['publisher', 'institution', 'title', 'booktitle', 
             'author', 'pages', 'volume', 'editor', 'year', 'bookpublisher', 'journal']
@@ -77,7 +77,7 @@ class ConfigFormat():
         :param section: Section of the config file
         :returns: string
         """
-        if self.format == 'latex':
+        if self.format == 'latex' or self.format == 'raw':
             return self.config[section].get('format')
         else:
             raise ValueError('Wrong format')
@@ -89,7 +89,7 @@ class ConfigFormat():
         :param section: Section of the config file
         :returns: float
         """
-        if self.format == 'latex':
+        if self.format == 'latex' or self.format == 'raw':
             return self.config[section].getint('authorlength')
         else:
             raise ValueError('Wrong format')
@@ -100,7 +100,7 @@ def check_default_config(location='~/.citebib'):
     Check if default configuration files exists.
     If it does not, create them
     """
-    formats = ('latex', 'bibtex')
+    formats = ('latex', 'bibtex', 'raw')
     for format in formats:
         path = os.path.join(os.path.expanduser(location), format)
         if not os.path.exists(path):
@@ -121,6 +121,8 @@ def write_default_config(inifile, format):
         _write_default_config_latex(inifile)
     elif format == 'bibtex':
         _write_default_config_bibtex(inifile)
+    elif format == 'raw':
+        _write_default_config_raw(inifile)
     else:
         raise ValueError('Wrong format: %s' % format)
 
@@ -133,6 +135,28 @@ def _write_default_config_latex(inifile):
     """
     fields = {
         'article' : ('author, journal, \\textbf{volume}, pages (year).'),  
+        'book' : ('author, title, publisher (year).'),  
+    }
+
+    config = configparser.ConfigParser()
+
+
+    for entry in fields:
+        content = {'format': fields[entry], 'authorlength': 0} #TODO
+        config[entry] = content
+
+
+    with open(inifile, 'w') as configfile:
+        config.write(configfile)
+
+def _write_default_config_raw(inifile):
+    """
+    Write a default configuration file for latex
+
+    :param inifile: ini file name
+    """
+    fields = {
+        'article' : ('author, journal, volume, pages (year).'),  
         'book' : ('author, title, publisher (year).'),  
     }
 

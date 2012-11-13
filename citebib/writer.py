@@ -23,11 +23,10 @@ def write_bibtex(entries, out=sys.stdout):
     out.write(block)
 
 
-def write_latex(ordered_list, entries, config, out=sys.stdout):
+def write_latex(ordered_list, entries, config, format='latex', out=sys.stdout):
     """
     Print entries to the latex format
     """
-
     for entry in ordered_list:
         try:
             authors_list_length = config.get_number_authors(entries[entry]['type'])
@@ -35,11 +34,14 @@ def write_latex(ordered_list, entries, config, out=sys.stdout):
             #TODO print something
             continue
         authors_list_length = 0 #FIXME: bugs... somewhere
-        out.write('\\bibitem{%s}\n' % entry)
+        if format == 'latex':
+            out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
         style = config.get_style(entries[entry]['type'])
         for field in entries[entry]:
-            data = clean_entry(field, entries[entry][field], format='latex', number_authors_name=authors_list_length)
+            data = clean_entry(field, entries[entry][field], format, number_authors_name=authors_list_length)
             style = re.sub(field, data, style)
         out.write(style)
         out.write('\n')
+
+

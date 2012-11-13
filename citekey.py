@@ -7,12 +7,12 @@ import sys
 from citebib import info
 
 
-def main(bibfiles, texfiles, format, output=sys.stdout):
+def main(bibfiles, citations, format):
     """
     Idea for the structure
 
     :param bibfiles: list of bibfiles
-    :param texfiles: list of texfiles
+    :param citations: list of citations
     :param format: Output format (latex or bibtex)
     :param output: Output file
     """
@@ -22,12 +22,6 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
     from citebib.config import ConfigFormat, check_default_config
 
     check_default_config()
-
-    #Load the tex
-    citations = []
-    for texfile in texfiles:
-        citations.extend(get_citations(texfile))
-    pprint(citations)
 
     #Load the bibtex
     entries = {}
@@ -52,15 +46,15 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
                     tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
-    pprint(new)
+    #pprint(new)
 
 
     #write it!
     from citebib.writer import write_bibtex
     from citebib.writer import write_latex
-    if format == 'bibtex':
-        write_bibtex(new, output)
-    elif format == 'latex':
+
+    output=sys.stdout
+    if format == 'latex' or format == 'raw':
         write_latex(citations, new, config, format, output) 
     else:
         raise ValueError('Wrong format value')
@@ -73,12 +67,10 @@ if __name__ == '__main__':
     parser.add_argument('--latex', help='LateX type output', action='store_true')
     parser.add_argument('-c', metavar='CONFIG', required=False, help='Configuration file with bibtex paths')
     parser.add_argument('-b', metavar='BIBTEX', nargs='*', required=False, help='Bibtex file(s)')
-    parser.add_argument('-t', metavar='TEX', nargs='+', required=True, help='Tex file(s)')
-    parser.add_argument('-o', metavar='OUTPUT', required=False, help='Output (default: stdout)')
+    parser.add_argument('keys', metavar='KEY', nargs='+', help='Bibtex key(s)')
     args = parser.parse_args()
 
     bibfiles = args.b
-    texfiles = args.t
 
     from citebib.config import ConfigBibtex
 
@@ -94,10 +86,6 @@ if __name__ == '__main__':
     if args.latex:
         format = 'latex'
     else:
-        format = 'bibtex'
-    if args.o == None:
-        main(bibfiles, texfiles, format)
-    else:
-        with open(args.o, 'w') as f:
-            main(bibfiles, texfiles, format, f)
+        format = 'raw'
+    main(bibfiles, args.keys, format)
 
