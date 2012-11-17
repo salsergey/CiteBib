@@ -17,65 +17,8 @@
 
 
 import argparse
-import sys
 from citebib import info
-
-
-def main(bibfiles, texfiles, format, output=sys.stdout):
-    """
-    Idea for the structure
-
-    :param bibfiles: list of bibfiles
-    :param texfiles: list of texfiles
-    :param format: Output format (latex or bibtex)
-    :param output: Output file
-    """
-    from citebib.importer import get_bibtex_entries, get_citations
-    from pprint import pprint
-
-    from citebib.config import ConfigFormat, check_default_config
-
-    check_default_config()
-
-    #Load the tex
-    citations = []
-    for texfile in texfiles:
-        citations.extend(get_citations(texfile))
-    pprint(citations)
-
-    #Load the bibtex
-    entries = {}
-    for bibfile in bibfiles:
-        entries.update(get_bibtex_entries(bibfile)) 
-
-    #Load configuration
-    config = ConfigFormat(format)
-
-    #Create a new dir with reqfields only
-    new = dict()
-
-    for entry in entries:
-        citekey = entries[entry]['id']
-        #If the key is in the tex file
-        if citekey in citations:
-            tmp = dict()
-            tmp['type'] = entries[entry]['type']
-            for field in entries[entry].keys():
-                #If the field is requested
-                if field in config.get_reqfields(tmp['type']):
-                    tmp[field] = entries[entry][field]
-            #Push the entry
-            new[entry] = tmp
-
-    #write it!
-    from citebib.writer import write_bibtex
-    from citebib.writer import write_text
-    if format == 'bibtex':
-        write_bibtex(citations, new, output)
-    elif format == 'latex':
-        write_text(citations, new, config, format, output) 
-    else:
-        raise ValueError('Wrong format value')
+from citebib.main import main
 
 if __name__ == '__main__':
 
