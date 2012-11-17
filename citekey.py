@@ -19,55 +19,8 @@
 import argparse
 import sys
 from citebib import info
-
-
-def main(bibfiles, citations, format):
-    """
-    Idea for the structure
-
-    :param bibfiles: list of bibfiles
-    :param citations: list of citations
-    :param format: Output format (latex or bibtex)
-    :param output: Output file
-    """
-    from citebib.importer import get_bibtex_entries
-    from citebib.config import ConfigFormat, check_default_config
-
-    check_default_config()
-
-    #Load the bibtex
-    entries = {}
-    for bibfile in bibfiles:
-        entries.update(get_bibtex_entries(bibfile)) 
-
-    #Load configuration
-    config = ConfigFormat(format)
-
-    #Create a new dir with reqfields only
-    new = dict()
-
-    for entry in entries:
-        citekey = entries[entry]['id']
-        #If the key is in the tex file
-        if citekey in citations:
-            tmp = dict()
-            tmp['type'] = entries[entry]['type']
-            for field in entries[entry].keys():
-                #If the field is requested
-                if field in config.get_reqfields(tmp['type']):
-                    tmp[field] = entries[entry][field]
-            #Push the entry
-            new[entry] = tmp
-
-
-    #write it!
-    from citebib.writer import write_text
-
-    output = sys.stdout
-    if format == 'latex' or format == 'raw':
-        write_text(citations, new, config, format, output) 
-    else:
-        raise ValueError('Wrong format value')
+from citebib.main import main
+from citebib.config import ConfigBibtex
 
 if __name__ == '__main__':
 
@@ -82,7 +35,6 @@ if __name__ == '__main__':
 
     bibfiles = args.b
 
-    from citebib.config import ConfigBibtex
 
     if bibfiles is None:
         if args.c is not None:
@@ -94,8 +46,7 @@ if __name__ == '__main__':
         bibfiles = bib.get_bibtex_paths()
 
     if args.latex:
-        format = 'latex'
+        main(bibfiles, args.keys, format='latex')
     else:
-        format = 'raw'
-    main(bibfiles, args.keys, format)
+        main(bibfiles, args.keys, format='raw')
 
