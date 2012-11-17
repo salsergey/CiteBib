@@ -33,7 +33,7 @@ class ConfigFormat():
     """
     Load custom formats from configuration files
 
-    :param format: biblio format (latex or bibtex)
+    :param format: biblio format (raw, latex or bibtex)
     :param name: name of the configuration
     :param location: path of the config directory
     :returns: the configuration
@@ -112,7 +112,6 @@ def check_default_config(location='~/.citebib'):
 def write_default_config(inifile, format):
     """
     This function is a wrapper to write default config files
-
 
     :param inifile: ini file name
     :param format: biblio format (latex or bibtex)
