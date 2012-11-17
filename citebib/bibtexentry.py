@@ -23,7 +23,7 @@ def clean_last_name(name):
     """
     Return a short clean last name
     """
-    name = re.sub("\s+", '',name) #remove white spaces
+    name = re.sub("\s+", '', name) #remove white spaces 
     name = re.sub("([A-Z]*)[^-.]*", "\g<1>", name) #Keep upper case and -
     name = re.sub("^(\w)(\w)$", "\g<1>. \g<2>.", name) # PG -> P. G.
     name = re.sub("^(\w)-(\w)$", "\g<1>.-\g<2>.", name) # P-G -> P.-G.

@@ -26,7 +26,7 @@ def string_to_latex(string):
     escape = [' ', '{', '}']
 
     new = []
-    for pos, char in enumerate(string):
+    for char in string:
         if char in escape:
             new.append(char)
         elif char in unicode_to_latex.keys():

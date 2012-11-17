@@ -16,7 +16,6 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 import re
-import sys
 from citebib.utils import uniq
 
 def get_citations(texfilename):

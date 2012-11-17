@@ -15,17 +15,15 @@
 #
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
-def uniq(alist): 
-   """
-   Uniqify a list (order preserving)
+def uniq(alist):
+    """
+    Uniqify a list (order preserving)
 
-   :param alist: list to uniqify
-   :returns: uniqified list
-   """
-   checked = []
-   for e in alist:
-       if e not in checked:
-           checked.append(e)
-   return checked
-
-
+    :param alist: list to uniqify
+    :returns: uniqified list
+    """
+    checked = []
+    for e in alist:
+        if e not in checked:
+            checked.append(e)
+    return checked
