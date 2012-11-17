@@ -16,9 +16,7 @@ def main(bibfiles, citations, format):
     :param format: Output format (latex or bibtex)
     :param output: Output file
     """
-    from citebib.importer import get_bibtex_entries, get_citations
-    from pprint import pprint
-
+    from citebib.importer import get_bibtex_entries
     from citebib.config import ConfigFormat, check_default_config
 
     check_default_config()
@@ -46,13 +44,12 @@ def main(bibfiles, citations, format):
                     tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
-    #pprint(new)
 
 
     #write it!
     from citebib.writer import write_text
 
-    output=sys.stdout
+    output = sys.stdout
     if format == 'latex' or format == 'raw':
         write_text(citations, new, config, format, output) 
     else:
