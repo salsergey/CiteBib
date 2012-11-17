@@ -35,6 +35,13 @@ if __name__ == '__main__':
     bibfiles = args.b
     texfiles = args.t
 
+    from citebib.importer import get_bibtex_entries, get_citations
+
+    #Load the tex
+    citations = []
+    for texfile in texfiles:
+        citations.extend(get_citations(texfile))
+
     from citebib.config import ConfigBibtex
 
     if bibfiles is None:
@@ -51,8 +58,8 @@ if __name__ == '__main__':
     else:
         format = 'bibtex'
     if args.o == None:
-        main(bibfiles, texfiles, format)
+        main(bibfiles, citations, format)
     else:
         with open(args.o, 'w') as f:
-            main(bibfiles, texfiles, format, f)
+            main(bibfiles, citations, format, f)
 

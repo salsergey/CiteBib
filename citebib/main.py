@@ -18,27 +18,20 @@
 import sys
 
 
-def main(bibfiles, texfiles, format, output=sys.stdout):
+def main(bibfiles, citations, format, output=sys.stdout):
     """
     Idea for the structure
 
     :param bibfiles: list of bibfiles
-    :param texfiles: list of texfiles
+    :param citations: list of citations
     :param format: Output format (latex or bibtex)
     :param output: Output file
     """
-    from citebib.importer import get_bibtex_entries, get_citations
-    from pprint import pprint
+    from citebib.importer import get_bibtex_entries
 
     from citebib.config import ConfigFormat, check_default_config
 
     check_default_config()
-
-    #Load the tex
-    citations = []
-    for texfile in texfiles:
-        citations.extend(get_citations(texfile))
-    pprint(citations)
 
     #Load the bibtex
     entries = {}
