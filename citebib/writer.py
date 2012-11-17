@@ -6,13 +6,22 @@ import re
 
 from citebib.bibtexentry import clean_entry
 
-def write_bibtex(entries, out=sys.stdout):
+def write_bibtex(citations, entries, out=sys.stdout):
     """
     Write all entries in filename
     """
     #TODO: we must check if all citations are available as in write_text
+
+    citations.sort()
+
     block = ''
-    for entry in entries:
+    for entry in citations:
+        try:
+            entries[entry]
+        except KeyError:
+            print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
+            continue
+
         block += '@' + str(entries[entry]['type']) + '{' + entry + ','
 
         #Sort the list of fields
@@ -39,7 +48,6 @@ def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
         try:
             authors_list_length = config.get_number_authors(entries[entry]['type'])
         except KeyError:
-            #TODO print something
             print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
             continue
         authors_list_length = 0 #FIXME: bugs... somewhere

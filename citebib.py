@@ -52,14 +52,12 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
                     tmp[field] = entries[entry][field]
             #Push the entry
             new[entry] = tmp
-    pprint(new)
-
 
     #write it!
     from citebib.writer import write_bibtex
     from citebib.writer import write_text
     if format == 'bibtex':
-        write_bibtex(new, output)
+        write_bibtex(citations, new, output)
     elif format == 'latex':
         write_text(citations, new, config, format, output) 
     else:
