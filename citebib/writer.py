@@ -8,10 +8,12 @@ from citebib.bibtexentry import clean_entry
 
 def write_bibtex(citations, entries, out=sys.stdout):
     """
-    Write all entries in filename
-    """
-    #TODO: we must check if all citations are available as in write_text
+    Write bibliography in a bibtex format
 
+    :param citations: a list of keys
+    :param entries: list of a list containing all data
+    :param out: output
+    """
     citations.sort()
 
     block = ''
@@ -42,7 +44,13 @@ def write_bibtex(citations, entries, out=sys.stdout):
 
 def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
     """
-    Print entries to the latex format
+    Write bibliography in a text format
+
+    :param ordered_list: a list of ordered keys. The order is conserved.
+    :param entries: list of a list containing all data
+    :param config:
+    :param format: style format: latex or raw
+    :param out: output
     """
     for entry in ordered_list:
         try:
