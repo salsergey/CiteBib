@@ -3,7 +3,7 @@ TODO
 * number of authors for latex output -> et al.
 * default config file: latex style...
 
-* if a key is present in different bibtex file, what to do?
+* if a key is present in different bibtex file, what to do? The current behavior: the last bibtex file has the last word
 
 * natbib support: 2 options case missing
 
