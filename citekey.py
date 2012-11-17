@@ -50,11 +50,11 @@ def main(bibfiles, citations, format):
 
 
     #write it!
-    from citebib.writer import write_latex
+    from citebib.writer import write_text
 
     output=sys.stdout
     if format == 'latex' or format == 'raw':
-        write_latex(citations, new, config, format, output) 
+        write_text(citations, new, config, format, output) 
     else:
         raise ValueError('Wrong format value')
 

@@ -10,7 +10,7 @@ def write_bibtex(entries, out=sys.stdout):
     """
     Write all entries in filename
     """
-    #TODO: we must check if all citations are available as in write_latex
+    #TODO: we must check if all citations are available as in write_text
     block = ''
     for entry in entries:
         block += '@' + str(entries[entry]['type']) + '{' + entry + ','
@@ -31,7 +31,7 @@ def write_bibtex(entries, out=sys.stdout):
     out.write(block)
 
 
-def write_latex(ordered_list, entries, config, format='latex', out=sys.stdout):
+def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
     """
     Print entries to the latex format
     """

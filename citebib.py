@@ -57,11 +57,11 @@ def main(bibfiles, texfiles, format, output=sys.stdout):
 
     #write it!
     from citebib.writer import write_bibtex
-    from citebib.writer import write_latex
+    from citebib.writer import write_text
     if format == 'bibtex':
         write_bibtex(new, output)
     elif format == 'latex':
-        write_latex(citations, new, config, format, output) 
+        write_text(citations, new, config, format, output) 
     else:
         raise ValueError('Wrong format value')
 
