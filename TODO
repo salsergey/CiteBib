@@ -4,11 +4,9 @@ TODO
 * default config file: latex style...
 
 * if a key is present in different bibtex file, what to do?
-* if a key is missing, print it on stderr
-
+* if a key is missing, print it on stderr. OK for latex/raw, not for bibtex
 
 * natbib support: 2 options case missing
-
 
 * citekey: support of regex in key.
 

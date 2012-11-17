@@ -40,6 +40,7 @@ def write_latex(ordered_list, entries, config, format='latex', out=sys.stdout):
             authors_list_length = config.get_number_authors(entries[entry]['type'])
         except KeyError:
             #TODO print something
+            print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
             continue
         authors_list_length = 0 #FIXME: bugs... somewhere
         if format == 'latex':
