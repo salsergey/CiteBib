@@ -50,7 +50,6 @@ def main(bibfiles, citations, format):
 
 
     #write it!
-    from citebib.writer import write_bibtex
     from citebib.writer import write_latex
 
     output=sys.stdout
