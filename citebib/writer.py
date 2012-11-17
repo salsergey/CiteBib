@@ -14,10 +14,18 @@ def write_bibtex(entries, out=sys.stdout):
     block = ''
     for entry in entries:
         block += '@' + str(entries[entry]['type']) + '{' + entry + ','
+
+        #Sort the list of fields
+        fields = []
         for field in entries[entry]:
             if field != 'type':
-                content = clean_entry(field, entries[entry][field], format='bibtex')
-                block += "\n\t" + str(field) + ' = {' + content + '},' 
+                fields.append(field)
+        fields.sort()
+
+        #Add fields content to block
+        for field in fields:
+            content = clean_entry(field, entries[entry][field], format='bibtex')
+            block += "\n\t" + str(field) + ' = {' + content + '},' 
     
         block += '\n}\n\n'
     out.write(block)

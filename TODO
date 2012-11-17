@@ -6,7 +6,6 @@ TODO
 * if a key is present in different bibtex file, what to do?
 * if a key is missing, print it on stderr
 
-* sort the fields order of apparition in bibtex output 
 
 * natbib support: 2 options case missing
 
@@ -25,3 +24,4 @@ DONE
 * Accent in fields
 * Specify a customize configuration with bibtex paths
 * on stdout, get a formatted ref by giving a key.
+* sort the fields order of apparition in bibtex output 
