@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
-from citebib import info
+from libcitebib import info
 
 setup(
     name         = 'CiteBib',
@@ -11,6 +11,6 @@ setup(
     license      = info.LICENSE,
     author_email = info.EMAIL,
     description  = info.SHORT_DESCRIPTION,
-    packages = ['citebib'],
+    packages = ['libcitebib'],
     scripts     = ['citebib', 'citekey'],
 )

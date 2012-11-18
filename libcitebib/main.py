@@ -17,8 +17,8 @@
 
 import sys
 
-from citebib.importer import get_bibtex_entries
-from citebib.config import ConfigFormat, check_default_config
+from libcitebib.importer import get_bibtex_entries
+from libcitebib.config import ConfigFormat, check_default_config
 
 def main(bibfiles, citations, format, output=sys.stdout):
     """
@@ -58,10 +58,10 @@ def main(bibfiles, citations, format, output=sys.stdout):
 
     #write it!
     if format == 'bibtex':
-        from citebib.writer import write_bibtex
+        from libcitebib.writer import write_bibtex
         write_bibtex(citations, new, output)
     elif format == 'latex' or format == 'raw':
-        from citebib.writer import write_text
+        from libcitebib.writer import write_text
         write_text(citations, new, config, format, output) 
     else:
         raise ValueError('Wrong format value')

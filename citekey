@@ -18,9 +18,9 @@
 
 import argparse
 import sys
-from citebib import info
-from citebib.main import main
-from citebib.config import ConfigBibtex
+from libcitebib import info
+from libcitebib.main import main
+from libcitebib.config import ConfigBibtex
 
 if __name__ == '__main__':
 

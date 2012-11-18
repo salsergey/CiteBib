@@ -15,7 +15,7 @@
 #
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
-import citebib.bibtexparser as bibtexparser
+import libcitebib.bibtexparser as bibtexparser
 import re
 
 def string_to_latex(string):

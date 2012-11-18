@@ -16,7 +16,7 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 import re
-from citebib.utils import uniq
+from libcitebib.utils import uniq
 
 def get_citations(texfilename):
     """
@@ -55,8 +55,8 @@ def get_citations(texfilename):
 
 
 
-from citebib.bibtexparser import BibTexParser
-#from citebib.bibtexentry import BibtexEntry
+from libcitebib.bibtexparser import BibTexParser
+
 def get_bibtex_entries(filename):
     """
     Parse a bibtex file and return the content
@@ -70,7 +70,6 @@ def get_bibtex_entries(filename):
 
     entries_hash = {}
     for entry in entries:
-        #entries_hash[entry['id']] = BibtexEntry(entry)
         entries_hash[entry['id']] = entry 
 
     return entries_hash

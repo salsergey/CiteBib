@@ -18,7 +18,7 @@
 import sys
 import re
 
-from citebib.bibtexentry import clean_entry
+from libcitebib.bibtexentry import clean_entry
 
 def write_bibtex(citations, entries, out=sys.stdout):
     """

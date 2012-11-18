@@ -17,7 +17,7 @@
 
 
 import re
-from citebib.converter import string_to_latex
+from libcitebib.converter import string_to_latex
 
 def clean_last_name(name):
     """
