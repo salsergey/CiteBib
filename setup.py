@@ -11,6 +11,6 @@ setup(
     license      = info.LICENSE,
     author_email = info.EMAIL,
     description  = info.SHORT_DESCRIPTION,
-    packages = ['libcitebib'],
-    scripts     = ['citebib', 'citekey'],
+    packages     = ['libcitebib'],
+    scripts      = ['citebib', 'citekey'],
 )
