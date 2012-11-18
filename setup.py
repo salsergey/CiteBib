@@ -12,5 +12,5 @@ setup(
     author_email = info.EMAIL,
     description  = info.SHORT_DESCRIPTION,
     packages = ['citebib'],
-    scripts     = ['citebib.py', 'citekey.py'],
+    scripts     = ['citebib', 'citekey'],
 )
