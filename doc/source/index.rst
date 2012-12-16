@@ -8,7 +8,8 @@ Welcome to CiteBib's documentation!
 
 
 :Authors: François Boulogne
-:Source code: `github.com project <https://github.com/sciunto/CiteBib>`_
+:Download: `Stable version <http://sciunto.org/source/>`_
+:Developer's corner: `github.com project <https://github.com/sciunto/CiteBib>`_
 :Generated: |today|
 :License: GPL v3
 :Version: |release|
