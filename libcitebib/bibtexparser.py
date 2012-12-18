@@ -250,7 +250,10 @@ class BibTexParser(object):
                     parts = val.split(str(v))
                     for key,val in enumerate(parts):
                         if key+1 < len(parts) and len(parts[key+1]) > 0:
-                            parts[key+1] = parts[key+1][0:]
+                            #parts[key+1] = parts[key+1][0:]
+                            #See https://github.com/okfn/bibserver/issues/250
+                            parts[key] = parts[key] + parts[key+1][0]
+                            parts[key+1] = parts[key+1][1:]
                     val = k.join(parts)
                 val = val.replace("{","").replace("}","")
         return val
