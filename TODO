@@ -8,6 +8,7 @@ TODO
 * natbib support: 2 options case missing
 
 * citekey: support of regex in key.
+* citekey: add an option to print the bibtex entry
 
 TO FIX
 ======
