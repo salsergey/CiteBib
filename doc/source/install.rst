@@ -1,0 +1,28 @@
+How to install?
+===============
+
+Requirements
+------------
+
+* python3
+
+Package manager
+---------------
+
+An AUR package `AUR package <https://aur.archlinux.org/packages/citebib/>`_ is available. 
+
+PyPI
+----
+
+`See Pypi <http://pypi.python.org/pypi/CiteBib/>`_
+
+To install with pip:
+
+    pip install Citebib
+
+Manual installation
+-------------------
+
+    python setup.py --root=/usr/local/bin
+
+

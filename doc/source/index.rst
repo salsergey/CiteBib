@@ -40,12 +40,7 @@ Given a key, citekey returns a formatted reference. (Might be useful for emails,
 How to install
 ==============
 
-    python setup.py --root=/usr/local/bin
-
-Requirements:
-
-* python3
-
+See :doc:`install`.
 
 
 Configuration
