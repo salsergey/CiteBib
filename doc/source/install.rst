@@ -18,10 +18,17 @@ PyPI
 
 To install with pip:
 
+.. code-block:: sh
+
     pip install Citebib
+
 
 Manual installation
 -------------------
+
+`Download <http://source.sciunto.org/citebib/>`_
+
+.. code-block:: sh
 
     python setup.py --root=/usr/local/bin
 

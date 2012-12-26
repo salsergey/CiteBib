@@ -12,4 +12,4 @@ http://sciunto.github.com/CiteBib/
 Download
 ========
 
-http://sciunto.org/source/
+http://source.sciunto.org/citebib
