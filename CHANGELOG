@@ -1,4 +1,5 @@
-* Fix accent issue (upstream)
+* citekey can print a bibtex entry
+* Workaround accent issue (upstream)
 
 ##################
 # v0.1 2012-11-18
