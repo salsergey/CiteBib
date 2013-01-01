@@ -237,6 +237,8 @@ class BibTexParser(object):
 
     def string_subst(self, val):
         """ Substitute string definitions """
+        #Corrected from upstream
+        #See https://github.com/okfn/bibserver/issues/250
         if not val:
             return ''
         for k in list(self.replace_dict.keys()):
@@ -248,14 +250,8 @@ class BibTexParser(object):
             for k, v in self.unicode_to_latex.items():
                 if v in val:
                     parts = val.split(str(v))
-                    for key,val in enumerate(parts):
-                        if key+1 < len(parts) and len(parts[key+1]) > 0:
-                            #parts[key+1] = parts[key+1][0:]
-                            #See https://github.com/okfn/bibserver/issues/250
-                            parts[key] = parts[key] + parts[key+1][0]
-                            parts[key+1] = parts[key+1][1:]
                     val = k.join(parts)
-                val = val.replace("{","").replace("}","")
+            val = val.replace("{","").replace("}","")
         return val
 
     def add_val(self, val):
