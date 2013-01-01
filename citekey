@@ -28,6 +28,7 @@ if __name__ == '__main__':
                              epilog='')
     parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
     parser.add_argument('--latex', help='LateX type output', action='store_true')
+    parser.add_argument('--bibtex', help='Bibtex type output', action='store_true')
     parser.add_argument('-c', metavar='CONFIG', required=False, help='Configuration file with bibtex paths')
     parser.add_argument('-b', metavar='BIBTEX', nargs='*', required=False, help='Bibtex file(s)')
     parser.add_argument('keys', metavar='KEY', nargs='+', help='Bibtex key(s)')
@@ -47,6 +48,8 @@ if __name__ == '__main__':
 
     if args.latex:
         main(bibfiles, args.keys, format='latex')
+    elif args.bibtex:
+        main(bibfiles, args.keys, format='bibtex')
     else:
         main(bibfiles, args.keys, format='raw')
 
