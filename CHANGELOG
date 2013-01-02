@@ -1,3 +1,6 @@
+##################
+# v0.2 2013-01-02
+##################
 * citekey can print a bibtex entry
 * accent issue fixed and patch sent upstream
 See https://github.com/okfn/bibserver/issues/250

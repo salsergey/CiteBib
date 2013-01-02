@@ -58,7 +58,9 @@ citebib
 -------
 
 To print the syntax:
+
 .. code-block:: sh
+
     citebib -h
 
 
@@ -66,19 +68,27 @@ citekey
 -------
 
 To print the syntax:
+
 .. code-block:: sh
+
     citekey -h
 
 To print the reference foo2010 in a raw style:
+
 .. code-block:: sh
+
     citekey foo2010
 
 To print the reference foo2010 in a latex style:
+
 .. code-block:: sh
+
     citekey --latex foo2010
 
 To print the bibtex entry foo2010:
+
 .. code-block:: sh
+
     citekey --bibtex foo2010
 
 
