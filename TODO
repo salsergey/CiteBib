@@ -6,9 +6,8 @@ TODO
 * if a key is present in different bibtex file, what to do? The current behavior: the last bibtex file has the last word
 
 * natbib support: 2 options case missing
-
+* citeclean: clean an entire bibtex file
 * citekey: support of regex in key.
-* citekey: add an option to print the bibtex entry
 
 TO FIX
 ======
@@ -24,3 +23,4 @@ DONE
 * on stdout, get a formatted ref by giving a key.
 * sort the fields order of apparition in bibtex output 
 * if a key is missing, print it on stderr. 
+* citekey: add an option to print the bibtex entry
