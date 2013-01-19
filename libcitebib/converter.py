@@ -18,6 +18,7 @@
 import libcitebib.bibtexparser as bibtexparser
 import re
 
+
 def string_to_latex(string):
     """
     Convert a string to its latex equivalent
@@ -35,6 +36,7 @@ def string_to_latex(string):
             new.append(char)
     return ''.join(new)
 
+
 def protect_uppercase(string):
     """
     Protect uppercase letters for bibtex
@@ -43,5 +45,4 @@ def protect_uppercase(string):
     :returns: string
     """
     string = re.sub("([A-Z])", '{\g<1>}', string)
-    return string 
-
+    return string

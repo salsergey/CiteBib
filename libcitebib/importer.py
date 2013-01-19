@@ -18,30 +18,30 @@
 import re
 from libcitebib.utils import uniq
 
+
 def get_citations(texfilename):
     """
     Get all citations in a tex file
-    
+
     :param texfilename: tex file path
     :returns: a list of citations
     """
-    
-    with open(texfilename,'r') as tex:
-    
+
+    with open(texfilename, 'r') as tex:
         #it seems that extra spaces in cite with multiple refs
         #works with bibtex, but not recommanded as said on wikipedia
-            
+
         #Catch citations
         cite = re.compile('cite(|t|p|t\*|p\*|alt|alp|alt\*|alp\*)({|\[.+?\]{)((\w|-|,|\s)+)}') #Can contain spaces?
         allcite = []
-    
+
         for line in tex:
             #handle commented lines or parts
             line = line.split('%')[0]
 
             #we get citations
             results = cite.findall(line)
-            if results: 
+            if results:
                 # loop on all results for the line
                 for el in results:
                     #sometimes, cite contains several citations
@@ -53,9 +53,8 @@ def get_citations(texfilename):
     allcite = uniq(allcite)
     return allcite
 
-
-
 from libcitebib.bibtexparser import BibTexParser
+
 
 def get_bibtex_entries(filename):
     """
@@ -64,12 +63,12 @@ def get_bibtex_entries(filename):
     :param filename: bibtex filepath
     :returns: a dictionnary; key=ID, content=entry
     """
-    with open(filename, 'r') as bibfile: 
+    with open(filename, 'r') as bibfile:
         biblio = BibTexParser(bibfile)
     entries = biblio.parse()[0]
 
     entries_hash = {}
     for entry in entries:
-        entries_hash[entry['id']] = entry 
+        entries_hash[entry['id']] = entry
 
     return entries_hash

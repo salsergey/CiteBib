@@ -15,23 +15,24 @@
 #
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
-
 import re
 from libcitebib.converter import string_to_latex
+
 
 def clean_last_name(name):
     """
     Return a short clean last name
     """
-    name = re.sub("\s+", '', name) #remove white spaces 
+    name = re.sub("\s+", '', name) #remove white spaces
     name = re.sub("([A-Z]*)[^-.]*", "\g<1>", name) #Keep upper case and -
     name = re.sub("^(\w)(\w)$", "\g<1>. \g<2>.", name) # PG -> P. G.
     name = re.sub("^(\w)-(\w)$", "\g<1>.-\g<2>.", name) # P-G -> P.-G.
     name = re.sub("^(\w)$", "\g<1>.", name) # P -> P.
     return name
 
+
 def get_authors_latex(authors, short=0):
-    """ 
+    """
     Get a formated author list
     short: max number of authors, others are in 'et al.'
             if == 0, it means infinite
@@ -44,12 +45,12 @@ def get_authors_latex(authors, short=0):
         author_list = authors
     else:
         author_list = authors[:short]
-    
+
     author_string = ''
     for pos, name in enumerate(author_list):
         name = name['name'].split(',')
         name[1] = clean_last_name(name[1])
-        author_string += str(name[1]) + ' ' + str(name[0]) 
+        author_string += str(name[1]) + ' ' + str(name[0])
 
         #Separator
         if pos == len(authors) - 2:
@@ -63,8 +64,9 @@ def get_authors_latex(authors, short=0):
     #Add et al if the list is too long...
     if short != 0 and short < len(authors):
         author_string += ' \\textit{et al.}'
-    
+
     return author_string
+
 
 def get_authors_bibtex(authors):
     """
@@ -78,11 +80,12 @@ def get_authors_bibtex(authors):
         #TODO process author_list
         name = author['name'].split(',')
         name[1] = clean_last_name(name[1])
-        if num != 0 :
+        if num != 0:
             author_list += ' and '
         author_list += str(name[0]) + ', ' + str(name[1])
 
     return author_list
+
 
 def clean_entry(field, content, format='bibtex', number_authors_name=0):
     """
@@ -115,4 +118,3 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
         return re.sub('\sto\s', '-', content)
     else:
         return content
-

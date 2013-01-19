@@ -43,6 +43,7 @@ class ConfigBibtex():
             paths.append(path)
         return paths
 
+
 class ConfigFormat():
     """
     Load custom formats from configuration files
@@ -54,7 +55,7 @@ class ConfigFormat():
     """
     def __init__(self, format, name='default.conf', location='~/.citebib'):
         self.format = format
-        filename = str(name) 
+        filename = str(name)
         filepath = os.path.join(os.path.expanduser(location), str(format), filename)
 
         self.config = configparser.ConfigParser()
@@ -63,7 +64,7 @@ class ConfigFormat():
     def get_reqfields(self, section):
         """
         Return required fields
-        
+
         :param section: Section of the config file
         :returns: list
         """
@@ -73,9 +74,10 @@ class ConfigFormat():
                 if self.config[section].getboolean(element):
                     content.append(element)
         elif self.format == 'latex' or self.format == 'raw':
-            content = [] #TODO
-            possibilities = ['publisher', 'institution', 'title', 'booktitle', 
-            'author', 'pages', 'volume', 'editor', 'year', 'bookpublisher', 'journal']
+            content = []  # TODO
+            possibilities = ['publisher', 'institution', 'title', 'booktitle',
+                             'author', 'pages', 'volume', 'editor',
+                             'year', 'bookpublisher', 'journal']
             line = self.config[section].get('format')
             for possibility in possibilities:
                 if possibility in line:
@@ -107,7 +109,7 @@ class ConfigFormat():
             return self.config[section].getint('authorlength')
         else:
             raise ValueError('Wrong format')
-                
+
 
 def check_default_config(location='~/.citebib'):
     """
@@ -147,17 +149,15 @@ def _write_default_config_latex(inifile):
     :param inifile: ini file name
     """
     fields = {
-        'article' : ('author, journal, \\textbf{volume}, pages (year).'),  
-        'book' : ('author, title, publisher (year).'),  
+        'article': ('author, journal, \\textbf{volume}, pages (year).'),
+        'book': ('author, title, publisher (year).'),
     }
 
     config = configparser.ConfigParser()
 
-
     for entry in fields:
-        content = {'format': fields[entry], 'authorlength': 0} #TODO
+        content = {'format': fields[entry], 'authorlength': 0}  # TODO
         config[entry] = content
-
 
     with open(inifile, 'w') as configfile:
         config.write(configfile)
@@ -169,17 +169,15 @@ def _write_default_config_raw(inifile):
     :param inifile: ini file name
     """
     fields = {
-        'article' : ('author, journal, volume, pages (year).'),  
-        'book' : ('author, title, publisher (year).'),  
+        'article': ('author, journal, volume, pages (year).'),
+        'book': ('author, title, publisher (year).'),
     }
 
     config = configparser.ConfigParser()
 
-
     for entry in fields:
-        content = {'format': fields[entry], 'authorlength': 0} #TODO
+        content = {'format': fields[entry], 'authorlength': 0}  # TODO
         config[entry] = content
-
 
     with open(inifile, 'w') as configfile:
         config.write(configfile)
@@ -191,25 +189,26 @@ def _write_default_config_bibtex(inifile):
 
     :param inifile: ini file name
     """
-    #TODO: this is messy. Look for suitable configparser function
-    #TODO: prefer a smart ordering (like alpha)
+    # TODO: this is messy. Look for suitable configparser function
+    # TODO: prefer a smart ordering (like alpha)
     reqfields = {
-        'article' : ('author', 'title', 'journal', 'volume', 'year', 'pages'),
-        'book' : ('author', 'editor', 'title', 'publisher', 'year'),
-        'booklet' : ('title'),
-        'conference' : ('author', 'title', 'booktitle', 'year'),
-        'inproceedings' : ('author', 'title', 'booktitle', 'year'),
-        'inbook' : ('author', 'editor', 'title', 'chapter', 'pages', 'publisher', 'year'),
-        'incollection' : ('author', 'title', 'bookpublisher', 'year'),
-        'manual' : ('title'),
-        'mastersthesis' : ('author', 'title', 'school', 'year'),
-        'misc' : (''),
-        'phdthesis' : ('author', 'title', 'school', 'year'),
-        'proceedings' : ('title', 'year'),
-        'techreport' : ('author', 'title', 'institution', 'year')
-        }
-    fields = ('author', 'editor', 'publisher', 'bookpublisher', 
-            'title', 'booktitle', 'journal', 'volume', 'year', 'pages', 'institution')
+                'article': ('author', 'title', 'journal', 'volume', 'year', 'pages'),
+                'book': ('author', 'editor', 'title', 'publisher', 'year'),
+                'booklet': ('title'),
+                'conference': ('author', 'title', 'booktitle', 'year'),
+                'inproceedings': ('author', 'title', 'booktitle', 'year'),
+                'inbook': ('author', 'editor', 'title', 'chapter', 'pages', 'publisher', 'year'),
+                'incollection': ('author', 'title', 'bookpublisher', 'year'),
+                'manual': ('title'),
+                'mastersthesis': ('author', 'title', 'school', 'year'),
+                'misc': (''),
+                'phdthesis': ('author', 'title', 'school', 'year'),
+                'proceedings': ('title', 'year'),
+                'techreport': ('author', 'title', 'institution', 'year')
+                }
+    fields = ('author', 'editor', 'publisher', 'bookpublisher',
+              'title', 'booktitle', 'journal', 'volume',
+              'year', 'pages', 'institution')
     config = configparser.ConfigParser()
 
     content = {}
@@ -223,8 +222,6 @@ def _write_default_config_bibtex(inifile):
 
     with open(inifile, 'w') as configfile:
         config.write(configfile)
-
-
 
 if __name__ == '__main__':
     pass
