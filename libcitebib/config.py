@@ -151,6 +151,7 @@ def _write_default_config_latex(inifile):
     fields = {
         'article': ('author, journal, \\textbf{volume}, pages (year).'),
         'book': ('author, title, publisher (year).'),
+        'book': ('author, title'),
     }
 
     config = configparser.ConfigParser()
@@ -164,13 +165,14 @@ def _write_default_config_latex(inifile):
 
 def _write_default_config_raw(inifile):
     """
-    Write a default configuration file for latex
+    Write a default configuration file for raw
 
     :param inifile: ini file name
     """
     fields = {
         'article': ('author, journal, volume, pages (year).'),
         'book': ('author, title, publisher (year).'),
+        'unpublished': ('author, title.'),
     }
 
     config = configparser.ConfigParser()
@@ -205,6 +207,7 @@ def _write_default_config_bibtex(inifile):
                 'phdthesis': ('author', 'title', 'school', 'year'),
                 'proceedings': ('title', 'year'),
                 'techreport': ('author', 'title', 'institution', 'year')
+                'unpublished': ('author', 'title')
                 }
     fields = ('author', 'editor', 'publisher', 'bookpublisher',
               'title', 'booktitle', 'journal', 'volume',
