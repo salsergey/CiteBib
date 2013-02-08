@@ -1,3 +1,7 @@
+
+* Fix repetition entries from multiple files
+* Handle the absence of an entry in configfile
+
 ##################
 # v0.2 2013-01-02
 ##################
