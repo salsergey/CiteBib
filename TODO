@@ -14,6 +14,8 @@ TEST
 ====
 config.py : get_reqfield, test exception
 
+tests/test_importer.py: some tests must be implemented, checked
+
 TO FIX
 ======
 * Accent in raw mode. Doh...

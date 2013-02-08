@@ -19,9 +19,10 @@ import re
 from libcitebib.utils import uniq
 
 
-def get_citations(texfilename):
+def _get_citations(texfilename):
     """
-    Get all citations in a tex file
+    Get all citations in a tex file.
+    Citations may appear several times.
 
     :param texfilename: tex file path
     :returns: a list of citations
@@ -48,10 +49,24 @@ def get_citations(texfilename):
                     foo = re.sub("\s", "", str(el[2])) #remove extra spaces
                     foo = re.split(",", foo)
                     allcite.extend(foo)
+    return allcite
+
+def get_citations(texfilenames):
+    """
+    Get all citations in tex files
+    Citations appear only once.
+
+    :param texfilenames: tex files path
+    :returns: a list of citations
+    """
+    allcite = []
+    for texfilename in texfilenames:
+       allcite.extend(_get_citations(texfilename))
     #uniqify the list
     #A set could not be used since the order might have a sense
     allcite = uniq(allcite)
     return allcite
+
 
 from libcitebib.bibtexparser import BibTexParser
 

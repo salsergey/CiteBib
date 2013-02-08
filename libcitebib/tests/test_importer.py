@@ -18,7 +18,7 @@
 import unittest
 import tempfile
 
-from importer import get_citations
+from importer import _get_citations
 
 class TestGetCitations(unittest.TestCase):
 
@@ -36,7 +36,7 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['Foo1999', 'Here1999', 'There2012']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
     def test_multiple_citations(self):
@@ -48,22 +48,9 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['Foo1999', 'Bar2012']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
-    def test_uniq_citations(self):
-        text = """
-        \cite{Foo1999}
-        \cite{Bar2012}
-        \cite{Foo1999}
-        """
-        temp = tempfile.mkstemp()[1]
-        with open(temp, 'w') as tmp:
-            tmp.write(text)
-
-        expected = ['Foo1999', 'Bar2012']
-        result = get_citations(temp)
-        self.assertEqual(expected, result)
 
     def test_commented_citations(self):
         text = """
@@ -74,7 +61,7 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['Foo1999']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
     def test_citations_with_option(self):
@@ -86,7 +73,7 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['Foo1999']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
     def test_natbib(self):
@@ -106,7 +93,7 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['t90', 'p90', 'tstar90', 'pstar90', 'alt90', 'alp90', 'altstar90', 'alpstar90']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
     def test_natbib_1option(self):
@@ -126,7 +113,7 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['t90', 'p90', 'tstar90', 'pstar90', 'alt90', 'alp90', 'altstar90', 'alpstar90']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
 
@@ -141,7 +128,24 @@ class TestGetCitations(unittest.TestCase):
             tmp.write(text)
 
         expected = ['p90', 'p290']
-        result = get_citations(temp)
+        result = _get_citations(temp)
         self.assertEqual(expected, result)
 
+from importer import get_citations
+class TestGetCitationsFiles(unittest.TestCase):
 
+    def test_uniq_citations(self):
+        text = """
+        \cite{Foo1999}
+        \cite{Bar2012}
+        \cite{Foo1999}
+        """
+        temp = tempfile.mkstemp()[1]
+        with open(temp, 'w') as tmp:
+            tmp.write(text)
+
+        expected = ['Foo1999', 'Bar2012']
+        result = get_citations([temp])
+        self.assertEqual(expected, result)
+
+    #TODO: implement tests about the list...
