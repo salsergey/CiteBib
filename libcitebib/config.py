@@ -67,18 +67,26 @@ class ConfigFormat():
 
         :param section: Section of the config file
         :returns: list
+        :raises KeyError: wrong section
+        :raises ValueError: wrong format
         """
         if self.format == 'bibtex':
             content = []
-            for element in self.config[section]:
-                if self.config[section].getboolean(element):
-                    content.append(element)
+            try:
+                for element in self.config[section]:
+                    if self.config[section].getboolean(element):
+                        content.append(element)
+            except KeyError:
+                raise ValueError('The section does not exists %s', section)
         elif self.format == 'latex' or self.format == 'raw':
             content = []  # TODO
             possibilities = ['publisher', 'institution', 'title', 'booktitle',
                              'author', 'pages', 'volume', 'editor',
                              'year', 'bookpublisher', 'journal']
-            line = self.config[section].get('format')
+            try:
+                line = self.config[section].get('format')
+            except KeyError:
+                raise ValueError('The section does not exists %s', section)
             for possibility in possibilities:
                 if possibility in line:
                     content.append(possibility)

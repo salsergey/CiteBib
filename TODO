@@ -9,6 +9,11 @@ TODO
 * citeclean: clean an entire bibtex file
 * citekey: support of regex in key.
 
+
+TEST
+====
+config.py : get_reqfield, test exception
+
 TO FIX
 ======
 * Accent in raw mode. Doh...
