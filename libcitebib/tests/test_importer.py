@@ -24,14 +24,14 @@ class TestGetCitations(unittest.TestCase):
 
 
     def test_simple_citations(self):
-        
+
         text = """
         \cite{Foo1999}
-        
+
         \cite{Here1999} blah \cite{There2012}
 
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -43,7 +43,7 @@ class TestGetCitations(unittest.TestCase):
         text = """
         \cite{Foo1999, Bar2012}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -53,11 +53,11 @@ class TestGetCitations(unittest.TestCase):
 
     def test_uniq_citations(self):
         text = """
-        \cite{Foo1999} 
+        \cite{Foo1999}
         \cite{Bar2012}
-        \cite{Foo1999} 
+        \cite{Foo1999}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -69,7 +69,7 @@ class TestGetCitations(unittest.TestCase):
         text = """
         I want this one \cite{Foo1999} %but not that one \cite{Bar2000}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -81,7 +81,7 @@ class TestGetCitations(unittest.TestCase):
         text = """
         \cite[option]{Foo1999}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -101,7 +101,7 @@ class TestGetCitations(unittest.TestCase):
         \citealt*{altstar90}
         \citealp*{alpstar90}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -121,7 +121,7 @@ class TestGetCitations(unittest.TestCase):
         \citealt*[opt]{altstar90}
         \citealp*[opt]{alpstar90}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
@@ -136,7 +136,7 @@ class TestGetCitations(unittest.TestCase):
         \citep[opt][]{p90}
         \citep[opt][opt2]{p290}
         """
-        temp = tempfile.mkstemp()[1] 
+        temp = tempfile.mkstemp()[1]
         with open(temp, 'w') as tmp:
             tmp.write(text)
 
