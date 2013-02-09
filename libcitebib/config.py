@@ -161,7 +161,7 @@ def _write_default_config_latex(inifile):
     fields = {
         'article': ('author, journal, \\textbf{volume}, pages (year).'),
         'book': ('author, title, publisher (year).'),
-        'book': ('author, title'),
+        'unpublished': ('author, title'),
     }
 
     config = configparser.ConfigParser()
