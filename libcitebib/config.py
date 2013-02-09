@@ -79,7 +79,9 @@ class ConfigFormat():
             except KeyError:
                 raise ValueError('The section does not exists %s' % section)
         elif self.format == 'latex' or self.format == 'raw':
-            content = []  # TODO
+            content = []  
+            #TODO: possibility  must be read from config
+            #Then, use a set to make sure each appears once
             possibilities = ['publisher', 'institution', 'title', 'booktitle',
                              'author', 'pages', 'volume', 'editor',
                              'year', 'bookpublisher', 'journal']
@@ -96,7 +98,7 @@ class ConfigFormat():
 
     def get_style(self, section):
         """
-        Return the style (relevant only for latex format)
+        Return the style (relevant only for latex and raw format)
 
         :param section: Section of the config file
         :returns: string
@@ -108,7 +110,7 @@ class ConfigFormat():
 
     def get_number_authors(self, section):
         """
-        Return the number of authors (relevant only for latex format)
+        Return the number of authors (relevant only for latex and raw format)
 
         :param section: Section of the config file
         :returns: float
