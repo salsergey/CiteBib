@@ -35,7 +35,7 @@ def main(bibfiles, citations, format, output=sys.stdout):
     #Load the bibtex
     entries = {}
     for bibfile in bibfiles:
-        entries.update(get_bibtex_entries(bibfile)) 
+        entries.update(get_bibtex_entries(bibfile))
 
     #Load configuration
     config = ConfigFormat(format)
@@ -52,7 +52,7 @@ def main(bibfiles, citations, format, output=sys.stdout):
             try:
                 req_field = config.get_reqfields(tmp['type']):
             except ValueError as e:
-                output.write('% ' + e)
+                output.write('% ' + str(e) + '\n')
             else:
                 for field in entries[entry].keys():
                     #If the field is requested
@@ -67,7 +67,7 @@ def main(bibfiles, citations, format, output=sys.stdout):
         write_bibtex(citations, new, output)
     elif format == 'latex' or format == 'raw':
         from libcitebib.writer import write_text
-        write_text(citations, new, config, format, output) 
+        write_text(citations, new, config, format, output)
     else:
         raise ValueError('Wrong format value')
 

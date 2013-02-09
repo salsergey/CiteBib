@@ -77,7 +77,7 @@ class ConfigFormat():
                     if self.config[section].getboolean(element):
                         content.append(element)
             except KeyError:
-                raise ValueError('The section does not exists %s', section)
+                raise ValueError('The section does not exists %s' % section)
         elif self.format == 'latex' or self.format == 'raw':
             content = []  # TODO
             possibilities = ['publisher', 'institution', 'title', 'booktitle',
@@ -86,12 +86,12 @@ class ConfigFormat():
             try:
                 line = self.config[section].get('format')
             except KeyError:
-                raise ValueError('The section does not exists %s', section)
+                raise ValueError('The section does not exists %s' % section)
             for possibility in possibilities:
                 if possibility in line:
                     content.append(possibility)
         else:
-            raise ValueError('Wrong format')
+            raise ValueError('Wrong format: %s' % self.format)
         return(content)
 
     def get_style(self, section):
@@ -104,7 +104,7 @@ class ConfigFormat():
         if self.format == 'latex' or self.format == 'raw':
             return self.config[section].get('format')
         else:
-            raise ValueError('Wrong format')
+            raise ValueError('Wrong format: %s' % self.format)
 
     def get_number_authors(self, section):
         """
@@ -116,7 +116,7 @@ class ConfigFormat():
         if self.format == 'latex' or self.format == 'raw':
             return self.config[section].getint('authorlength')
         else:
-            raise ValueError('Wrong format')
+            raise ValueError('Wrong format: %s' % self.format)
 
 
 def check_default_config(location='~/.citebib'):
