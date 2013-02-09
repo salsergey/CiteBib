@@ -216,8 +216,8 @@ def _write_default_config_bibtex(inifile):
                 'misc': (''),
                 'phdthesis': ('author', 'title', 'school', 'year'),
                 'proceedings': ('title', 'year'),
-                'techreport': ('author', 'title', 'institution', 'year')
-                'unpublished': ('author', 'title')
+                'techreport': ('author', 'title', 'institution', 'year'),
+                'unpublished': ('author', 'title'),
                 }
     fields = ('author', 'editor', 'publisher', 'bookpublisher',
               'title', 'booktitle', 'journal', 'volume',
