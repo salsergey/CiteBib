@@ -22,7 +22,7 @@ import os
 
 class ConfigBibtex():
     """
-    Load bitex files from configuration files
+    Load bibtex files from configuration files
     :param name: name of the configuration
     :param location: path of the config directory
     """
@@ -86,7 +86,7 @@ class ConfigFormat():
             try:
                 line = self.config[section].get('format')
             except KeyError:
-                raise ValueError('The section does not exists %s' % section)
+                raise ValueError('The section does not exists: %s' % section)
             for possibility in possibilities:
                 if possibility in line:
                     content.append(possibility)
