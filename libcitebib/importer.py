@@ -68,7 +68,7 @@ def get_citations(texfilenames):
     return allcite
 
 
-from libcitebib.bibtexparser import BibTexParser
+from bibtexparser.bibtexparser import BibTexParser
 
 
 def get_bibtex_entries(filename):
@@ -80,7 +80,8 @@ def get_bibtex_entries(filename):
     """
     with open(filename, 'r') as bibfile:
         biblio = BibTexParser(bibfile)
-    entries = biblio.parse()[0]
+    #entries = biblio.parse()[0]
+    entries = biblio.get_entry_list()
 
     entries_hash = {}
     for entry in entries:
