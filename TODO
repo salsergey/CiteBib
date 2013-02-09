@@ -16,6 +16,11 @@ config.py : get_reqfield, test exception
 
 tests/test_importer.py: some tests must be implemented, checked
 
+
+In bibtexentry, clean_entry(), a field may contain
+several info (ID, name). Each possilibity may not be
+handled and result in a crash in libcitebib/writer.py
+
 TO FIX
 ======
 * Accent in raw mode. Doh...
@@ -28,6 +33,6 @@ DONE
 * Accent in fields
 * Specify a customize configuration with bibtex paths
 * on stdout, get a formatted ref by giving a key.
-* sort the fields order of apparition in bibtex output 
-* if a key is missing, print it on stderr. 
+* sort the fields order of apparition in bibtex output
+* if a key is missing, print it on stderr.
 * citekey: add an option to print the bibtex entry
