@@ -49,12 +49,17 @@ def main(bibfiles, citations, format, output=sys.stdout):
         if citekey in citations:
             tmp = dict()
             tmp['type'] = entries[entry]['type']
-            for field in entries[entry].keys():
-                #If the field is requested
-                if field in config.get_reqfields(tmp['type']):
-                    tmp[field] = entries[entry][field]
-            #Push the entry
-            new[entry] = tmp
+            try:
+                req_field = config.get_reqfields(tmp['type']):
+            except ValueError as e:
+                output.write('% ' + e)
+            else:
+                for field in entries[entry].keys():
+                    #If the field is requested
+                    if field in req_field:
+                        tmp[field] = entries[entry][field]
+                #Push the entry
+                new[entry] = tmp
 
     #write it!
     if format == 'bibtex':
