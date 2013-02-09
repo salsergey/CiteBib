@@ -50,7 +50,7 @@ def main(bibfiles, citations, format, output=sys.stdout):
             tmp = dict()
             tmp['type'] = entries[entry]['type']
             try:
-                req_field = config.get_reqfields(tmp['type']):
+                req_field = config.get_reqfields(tmp['type'])
             except ValueError as e:
                 output.write('% ' + str(e) + '\n')
             else:
