@@ -50,8 +50,8 @@ def write_bibtex(citations, entries, out=sys.stdout):
         #Add fields content to block
         for field in fields:
             content = clean_entry(field, entries[entry][field], format='bibtex')
-            block += "\n\t" + str(field) + ' = {' + content + '},' 
-    
+            block += "\n\t" + str(field) + ' = {' + content + '},'
+
         block += '\n}\n\n'
     out.write(block)
 
