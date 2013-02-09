@@ -219,7 +219,7 @@ def _write_default_config_bibtex(inifile):
                 }
     fields = ('author', 'editor', 'publisher', 'bookpublisher',
               'title', 'booktitle', 'journal', 'volume',
-              'year', 'pages', 'institution')
+              'year', 'pages', 'institution', 'school')
     config = configparser.ConfigParser()
 
     content = {}
