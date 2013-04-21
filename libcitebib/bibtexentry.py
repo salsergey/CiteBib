@@ -45,6 +45,7 @@ def get_authors_latex(authors, short=0):
         author_list = authors
     else:
         author_list = authors[:short]
+
     author_string = ''
     for pos, name in enumerate(author_list):
         name = name['name'].split(',')
@@ -96,6 +97,7 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
     :param number_authors_name: Length of the author list (Latex format)
     :returns: String
     """
+
     if field == 'author':
         if format == 'bibtex':
             auth = get_authors_bibtex(content)
