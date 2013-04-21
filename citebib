@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
                              epilog='')
-    parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION) 
+    parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION)
     parser.add_argument('--latex', help='LateX type output', action='store_true')
     parser.add_argument('-c', metavar='CONFIG', required=False, help='Configuration file with bibtex paths')
     parser.add_argument('-b', metavar='BIBTEX', nargs='*', required=False, help='Bibtex file(s)')
@@ -38,9 +38,7 @@ if __name__ == '__main__':
     from libcitebib.importer import get_bibtex_entries, get_citations
 
     #Load the tex
-    citations = []
-    for texfile in texfiles:
-        citations.extend(get_citations(texfile))
+    citations = get_citations(texfiles)
 
     from libcitebib.config import ConfigBibtex
 
