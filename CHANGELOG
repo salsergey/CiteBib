@@ -1,7 +1,8 @@
-
+##################
+# v0.2.5 2013-05-28
+##################
 * Fix repetition entries from multiple files
 * Handle the absence of an entry in configfile
-* Use upstream library to parse bibtex
 
 
 ##################
