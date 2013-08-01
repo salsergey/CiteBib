@@ -16,6 +16,8 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 import re
+from bibtexparser import BibTexParser
+
 from libcitebib.utils import uniq
 
 
@@ -66,9 +68,6 @@ def get_citations(texfilenames):
     #A set could not be used since the order might have a sense
     allcite = uniq(allcite)
     return allcite
-
-
-from libcitebib.bibtexparser import BibTexParser
 
 
 def get_bibtex_entries(filename):

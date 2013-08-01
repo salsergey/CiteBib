@@ -16,7 +16,6 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 from .bibtexentry import *
-from .bibtexparser import *
 from .config import *
 from .converter import *
 from .importer import *
