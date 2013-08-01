@@ -78,7 +78,7 @@ def get_authors_bibtex(authors):
     author_list = ''
     for num, author in enumerate(authors):
         #TODO process author_list
-        name = author['name'].split(',')
+        name = author.split(',')
         name[1] = clean_last_name(name[1])
         if num != 0:
             author_list += ' and '

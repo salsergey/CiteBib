@@ -39,6 +39,21 @@ class TestCitekey(unittest.TestCase):
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
-
+    def test_bibtex(self):
+        command = ['citekey', '--bibtex', 'Cesar2013', '-b', 'tests/data/article.bib']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+        expected = """@article{Cesar2013,
+\tauthor = {C{\\'e}sar, J.},
+\tjournal = {Nice Journal},
+\tpages = {12--23},
+\ttitle = {An amazing title},
+\tvolume = {12},
+\tyear = {2013},
+}\n
+"""
+        self.assertEqual(out, expected)
+        self.assertEqual(stderr, None)
 
 
