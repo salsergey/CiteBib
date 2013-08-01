@@ -29,3 +29,16 @@ class TestCitekey(unittest.TestCase):
         expected = 'J. César, Nice Journal, 12, 12--23 (2013).\n'
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
+
+    def test_latex(self):
+        command = ['citekey', '--latex', 'Cesar2013', '-b', 'tests/data/article.bib']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+        expected = "\\bibitem{Cesar2013}\nJ. C{\\'e}sar, Nice Journal, \\textbf{12}, 12--23 (2013).\n"
+        self.assertEqual(out, expected)
+        self.assertEqual(stderr, None)
+
+
+
+
