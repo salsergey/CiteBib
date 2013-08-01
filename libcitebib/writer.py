@@ -20,6 +20,7 @@ import re
 
 from libcitebib.bibtexentry import clean_entry
 
+
 def write_bibtex(citations, entries, out=sys.stdout):
     """
     Write bibliography in a bibtex format
@@ -72,7 +73,7 @@ def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
         except KeyError:
             print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
             continue
-        authors_list_length = 0 #FIXME: bugs... somewhere
+        authors_list_length = 0  # FIXME: bugs... somewhere
         if format == 'latex':
             out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
@@ -82,5 +83,3 @@ def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
             style = re.sub(field, data, style)
         out.write(style)
         out.write('\n')
-
-

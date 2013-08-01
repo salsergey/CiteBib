@@ -20,6 +20,7 @@ import sys
 from libcitebib.importer import get_bibtex_entries
 from libcitebib.config import ConfigFormat, check_default_config
 
+
 def main(bibfiles, citations, format, output=sys.stdout):
     """
     Idea for the structure
@@ -70,4 +71,3 @@ def main(bibfiles, citations, format, output=sys.stdout):
         write_text(citations, new, config, format, output)
     else:
         raise ValueError('Wrong format value')
-

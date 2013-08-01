@@ -20,6 +20,7 @@ from bibtexparser import BibTexParser, getnames
 
 from libcitebib.utils import uniq
 
+
 def _custumize(record):
     """
     This function curstumizes record for bibtex.
@@ -29,6 +30,7 @@ def _custumize(record):
         if record["author"]:
             record["author"] = getnames([i.strip() for i in record["author"].replace('\n', ' ').split(" and ")])
     return(record)
+
 
 def _get_citations(texfilename):
     """
@@ -44,7 +46,7 @@ def _get_citations(texfilename):
         #works with bibtex, but not recommanded as said on wikipedia
 
         #Catch citations
-        cite = re.compile('cite(|t|p|t\*|p\*|alt|alp|alt\*|alp\*)({|\[.+?\]{)((\w|-|,|\s)+)}') #Can contain spaces?
+        cite = re.compile('cite(|t|p|t\*|p\*|alt|alp|alt\*|alp\*)({|\[.+?\]{)((\w|-|,|\s)+)}')  # Can contain spaces?
         allcite = []
 
         for line in tex:
@@ -57,10 +59,11 @@ def _get_citations(texfilename):
                 # loop on all results for the line
                 for el in results:
                     #sometimes, cite contains several citations
-                    foo = re.sub("\s", "", str(el[2])) #remove extra spaces
+                    foo = re.sub("\s", "", str(el[2]))  # remove extra spaces
                     foo = re.split(",", foo)
                     allcite.extend(foo)
     return allcite
+
 
 def get_citations(texfilenames):
     """
@@ -72,7 +75,7 @@ def get_citations(texfilenames):
     """
     allcite = []
     for texfilename in texfilenames:
-       allcite.extend(_get_citations(texfilename))
+        allcite.extend(_get_citations(texfilename))
     #uniqify the list
     #A set could not be used since the order might have a sense
     allcite = uniq(allcite)

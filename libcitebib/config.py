@@ -79,7 +79,7 @@ class ConfigFormat():
             except KeyError:
                 raise ValueError('The section does not exists %s' % section)
         elif self.format == 'latex' or self.format == 'raw':
-            content = []  
+            content = []
             #TODO: possibility  must be read from config
             #Then, use a set to make sure each appears once
             possibilities = ['publisher', 'institution', 'title', 'booktitle',
@@ -135,6 +135,7 @@ def check_default_config(location='~/.citebib'):
         if not os.access(file, os.F_OK):
             write_default_config(file, format)
 
+
 def write_default_config(inifile, format):
     """
     This function is a wrapper to write default config files
@@ -172,6 +173,7 @@ def _write_default_config_latex(inifile):
 
     with open(inifile, 'w') as configfile:
         config.write(configfile)
+
 
 def _write_default_config_raw(inifile):
     """

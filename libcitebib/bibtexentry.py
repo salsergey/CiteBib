@@ -23,11 +23,11 @@ def clean_last_name(name):
     """
     Return a short clean last name
     """
-    name = re.sub("\s+", '', name) #remove white spaces
-    name = re.sub("([A-Z]*)[^-.]*", "\g<1>", name) #Keep upper case and -
-    name = re.sub("^(\w)(\w)$", "\g<1>. \g<2>.", name) # PG -> P. G.
-    name = re.sub("^(\w)-(\w)$", "\g<1>.-\g<2>.", name) # P-G -> P.-G.
-    name = re.sub("^(\w)$", "\g<1>.", name) # P -> P.
+    name = re.sub("\s+", '', name)  # remove white spaces
+    name = re.sub("([A-Z]*)[^-.]*", "\g<1>", name)  # Keep upper case and -
+    name = re.sub("^(\w)(\w)$", "\g<1>. \g<2>.", name)  # PG -> P. G.
+    name = re.sub("^(\w)-(\w)$", "\g<1>.-\g<2>.", name)  # P-G -> P.-G.
+    name = re.sub("^(\w)$", "\g<1>.", name)  # P -> P.
     return name
 
 
@@ -41,7 +41,7 @@ def get_authors_latex(authors, short=0):
     :param short: cleaned authors list length
     :returns: string
     """
-    if short == 0: #zero means infinite
+    if short == 0:  # zero means infinite
         author_list = authors
     else:
         author_list = authors[:short]

@@ -15,6 +15,7 @@
 #
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
+
 def uniq(alist):
     """
     Uniqify a list (order preserving)
