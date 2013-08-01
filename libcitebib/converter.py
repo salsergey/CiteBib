@@ -15,7 +15,7 @@
 #
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
-import libcitebib.bibtexparser as bibtexparser
+import bibtexparser
 import re
 
 
@@ -23,7 +23,7 @@ def string_to_latex(string):
     """
     Convert a string to its latex equivalent
     """
-    unicode_to_latex = bibtexparser.BibTexParser.unicode_to_latex
+    unicode_to_latex = bibtexparser.latexenc.unicode_to_latex
     escape = [' ', '{', '}']
 
     new = []
