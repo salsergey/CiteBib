@@ -82,13 +82,13 @@ from libcitebib.bibtexentry import get_authors_bibtex
 class TestGetAuthorBibtex(unittest.TestCase):
 
     def test_simple_list(self):
-        authors = [{'name': 'Foobar, D', 'id': 'FoobarD'}]
+        authors = ['Foobar, D']
         expected = 'Foobar, D.'
         result = get_authors_bibtex(authors)
         self.assertEqual(expected, result)
 
     def test_simple_list2(self):
-        authors = [{'name': 'Foo, D', 'id': 'FooD'}, {'name': 'Bar, B', 'id': 'BarB'}]
+        authors = ['Foo, D', 'Bar, B']
         expected = 'Foo, D. and Bar, B.'
         result = get_authors_bibtex(authors)
         self.assertEqual(expected, result)
