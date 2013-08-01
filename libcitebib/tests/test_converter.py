@@ -17,7 +17,8 @@
 
 import unittest
 
-from converter import string_to_latex
+from libcitebib.converter import string_to_latex
+
 class TestLatexConverter(unittest.TestCase):
 
     def test_accent(self):
@@ -32,8 +33,8 @@ class TestLatexConverter(unittest.TestCase):
         result = string_to_latex(string)
         expected = '{A}'
         self.assertEqual(result, expected)
-        
-from converter import protect_uppercase
+
+from libcitebib.converter import protect_uppercase
 class TestUppercaseProtection(unittest.TestCase):
 
     def test_uppercase(self):

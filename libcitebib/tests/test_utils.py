@@ -18,10 +18,10 @@
 
 import unittest
 
-from utils import uniq
+from libcitebib.utils import uniq
 
 class TestUniq(unittest.TestCase):
-    
+
     def test_simple_list(self):
         data = ['a', 'b', 'c']
         expected = data

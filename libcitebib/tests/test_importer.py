@@ -18,7 +18,7 @@
 import unittest
 import tempfile
 
-from importer import _get_citations
+from libcitebib.importer import _get_citations
 
 class TestGetCitations(unittest.TestCase):
 
@@ -131,7 +131,9 @@ class TestGetCitations(unittest.TestCase):
         result = _get_citations(temp)
         self.assertEqual(expected, result)
 
-from importer import get_citations
+
+from libcitebib.importer import get_citations
+
 class TestGetCitationsFiles(unittest.TestCase):
 
     def test_uniq_citations(self):

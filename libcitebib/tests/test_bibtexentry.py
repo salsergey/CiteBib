@@ -17,10 +17,10 @@
 
 import unittest
 
-from bibtexentry import clean_last_name
+from libcitebib.bibtexentry import clean_last_name
 
 class TestCleanLastName(unittest.TestCase):
-    
+
     def test_simple_lastname(self):
         lastname = ' A '
         expected = 'A.'
@@ -47,7 +47,7 @@ class TestCleanLastName(unittest.TestCase):
 
 
 
-from bibtexentry import get_authors
+from libcitebib.bibtexentry import get_authors_latex as get_authors
 
 class TestGetAuthor(unittest.TestCase):
 
@@ -72,12 +72,12 @@ class TestGetAuthor(unittest.TestCase):
 
     def test_short_list(self):
         authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
-        expected = 'J. Foo et al.'
+        expected = 'J. Foo \\textit{et al.}'
         result = get_authors(authors, 1)
         self.assertEqual(expected, result)
 
 
-from bibtexentry import get_authors_bibtex
+from libcitebib.bibtexentry import get_authors_bibtex
 
 class TestGetAuthorBibtex(unittest.TestCase):
 
