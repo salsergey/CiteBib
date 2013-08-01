@@ -1,3 +1,5 @@
+.backups
+*.bak
 *.py[co]
 
 # Packages
