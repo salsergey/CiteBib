@@ -52,26 +52,26 @@ from libcitebib.bibtexentry import get_authors_latex as get_authors
 class TestGetAuthor(unittest.TestCase):
 
     def test_one_author(self):
-        authors = [{'name': 'Foo, J', 'id': 'FooJ'}]
+        authors = ['Foo, J']
         expected = 'J. Foo'
         result = get_authors(authors)
         self.assertEqual(expected, result)
 
     def test_two_authors(self):
-        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}]
+        authors = ['Foo, J', 'Bar, R']
         expected = 'J. Foo and R. Bar'
         result = get_authors(authors)
         self.assertEqual(expected, result)
 
 
     def test_simple_list(self):
-        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
+        authors = ['Foo, J', 'Bar, R', 'Foobar, D']
         expected = 'J. Foo, R. Bar and D. Foobar'
         result = get_authors(authors)
         self.assertEqual(expected, result)
 
     def test_short_list(self):
-        authors = [{'name': 'Foo, J', 'id': 'FooJ'}, {'name': 'Bar, R', 'id': 'BarR'}, {'name': 'Foobar, D', 'id': 'FoobarD'}]
+        authors = ['Foo, J', 'Bar, R', 'Foobar, D']
         expected = 'J. Foo \\textit{et al.}'
         result = get_authors(authors, 1)
         self.assertEqual(expected, result)
