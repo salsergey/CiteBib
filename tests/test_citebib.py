@@ -21,7 +21,35 @@ import subprocess
 
 class TestCitebib(unittest.TestCase):
 
-    def test_default(self):
+    ###########
+    # BAD USAGE
+    ###########
+    @unittest.skip('finish this test')
+    def test_not_existing_bibfile(self):
+        command = ['citebib', '-b', 'tests/data/not_existing.bib', '-t', 'tests/data/doc.tex']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+
+    @unittest.skip('finish this test')
+    def test_not_existing_texfile(self):
+        command = ['citebib', '-b', 'tests/data/article.bib', '-t', 'tests/data/not_existing.tex']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+
+    @unittest.skip('finish this test')
+    def test_not_missingkey_in_bibtex(self):
+        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc.tex']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+
+
+    ###########
+    # ARTICLES
+    ###########
+    def test_article_default(self):
         command = ['citebib', '-b', 'tests/data/article.bib', '-t', 'tests/data/doc.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
@@ -37,4 +65,9 @@ class TestCitebib(unittest.TestCase):
 """
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
+
+
+    ###########
+    # BOOKS
+    ###########
 
