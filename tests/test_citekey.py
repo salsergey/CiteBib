@@ -21,7 +21,7 @@ import subprocess
 
 class TestCitekey(unittest.TestCase):
 
-    def test_default(self):
+    def test_article_default(self):
         command = ['citekey', 'Cesar2013', '-b', 'tests/data/article.bib']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
@@ -30,7 +30,7 @@ class TestCitekey(unittest.TestCase):
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
-    def test_latex(self):
+    def test_article_latex(self):
         command = ['citekey', '--latex', 'Cesar2013', '-b', 'tests/data/article.bib']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
@@ -39,7 +39,7 @@ class TestCitekey(unittest.TestCase):
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
-    def test_bibtex(self):
+    def test_article_bibtex(self):
         command = ['citekey', '--bibtex', 'Cesar2013', '-b', 'tests/data/article.bib']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
