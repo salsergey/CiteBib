@@ -70,4 +70,18 @@ class TestCitebib(unittest.TestCase):
     ###########
     # BOOKS
     ###########
+    def test_book_default(self):
+        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc2.tex']
+        process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
+        stdout, stderr = process.communicate()
+        out = stdout.decode()
+        expected = """@book{Bird1987,
+\tauthor = {Bird, R.B and Armstrong, R.C and Hassager, O.},
+\tpublisher = {Wiley Edition},
+\ttitle = {Dynamics of Polymeric Liquid},
+\tyear = {1987},
+}\n
+"""
+        self.assertEqual(out, expected)
+        self.assertEqual(stderr, None)
 
