@@ -26,7 +26,7 @@ class TestCitebib(unittest.TestCase):
     ###########
     @unittest.skip('finish this test')
     def test_not_existing_bibfile(self):
-        command = ['citebib', '-b', 'tests/data/not_existing.bib', '-t', 'tests/data/doc.tex']
+        command = ['citebib', '-b', 'tests/data/not_existing.bib', '-t', 'tests/data/doc_article.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
@@ -40,7 +40,7 @@ class TestCitebib(unittest.TestCase):
 
     @unittest.skip('finish this test')
     def test_not_missingkey_in_bibtex(self):
-        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc.tex']
+        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc_article.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
@@ -50,7 +50,7 @@ class TestCitebib(unittest.TestCase):
     # ARTICLES
     ###########
     def test_article_default(self):
-        command = ['citebib', '-b', 'tests/data/article.bib', '-t', 'tests/data/doc.tex']
+        command = ['citebib', '-b', 'tests/data/article.bib', '-t', 'tests/data/doc_article.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
@@ -71,7 +71,7 @@ class TestCitebib(unittest.TestCase):
     # BOOKS
     ###########
     def test_book_default(self):
-        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc2.tex']
+        command = ['citebib', '-b', 'tests/data/book.bib', '-t', 'tests/data/doc_book.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
