@@ -126,8 +126,7 @@ def check_default_config(location='~/.config/citebib'):
     Check if default configuration files exists.
     If it does not, create them
     """
-    os.makedirs(location, exist_ok=True)
-
+    os.makedirs(os.path.expanduser(location), exist_ok=True)
     # Write bibtex location config file
     file = os.path.join(os.path.expanduser(location), 'bibtex.conf')
     bibfile = os.path.join(os.path.expanduser(location), 'bibtex.conf')
