@@ -50,6 +50,7 @@ See :doc:`install`.
 Configuration
 =============
 
+TODO
 
 Usage
 =====

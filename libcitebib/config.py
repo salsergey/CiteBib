@@ -26,7 +26,7 @@ class ConfigBibtex():
     :param name: name of the configuration
     :param location: path of the config directory
     """
-    def __init__(self, name='bibtex.conf', location='~/.citebib'):
+    def __init__(self, name='bibtex.conf', location='~/.config/citebib'):
         filename = str(name)
         filepath = os.path.join(os.path.expanduser(location), filename)
 
@@ -53,7 +53,7 @@ class ConfigFormat():
     :param location: path of the config directory
     :returns: the configuration
     """
-    def __init__(self, format, name='default.conf', location='~/.citebib'):
+    def __init__(self, format, name='default.conf', location='~/.config/citebib'):
         self.format = format
         filename = str(name)
         filepath = os.path.join(os.path.expanduser(location), str(format), filename)
@@ -121,7 +121,7 @@ class ConfigFormat():
             raise ValueError('Wrong format: %s' % self.format)
 
 
-def check_default_config(location='~/.citebib'):
+def check_default_config(location='~/.config/citebib'):
     """
     Check if default configuration files exists.
     If it does not, create them
