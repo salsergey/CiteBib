@@ -50,7 +50,25 @@ See :doc:`install`.
 Configuration
 =============
 
-TODO
+The default location is ~/.config/citebib
+
+To initialize the configuration, you must citebib or citekey one time.
+Then, the following tree will be created:
+
+.. code-block:: sh
+
+    .
+    ├── bibtex
+    │   └── default.conf
+    ├── latex
+    │   └── default.conf
+    └── raw
+        └── default.conf
+
+Each subdirectory (bibtex, latex and raw) corresponds to a printing mode.
+The configuration file give you the possibility to activate or desactivate fields (like author, title...).
+
+TODO...
 
 Usage
 =====
