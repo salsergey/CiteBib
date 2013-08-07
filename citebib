@@ -35,6 +35,9 @@ if __name__ == '__main__':
     bibfiles = args.b
     texfiles = args.t
 
+    from libcitebib.config import check_default_config
+    check_default_config()
+
     from libcitebib.importer import get_bibtex_entries, get_citations
 
     #Load the tex

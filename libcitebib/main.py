@@ -18,7 +18,7 @@
 import sys
 
 from libcitebib.importer import get_bibtex_entries
-from libcitebib.config import ConfigFormat, check_default_config
+from libcitebib.config import ConfigFormat
 
 
 def main(bibfiles, citations, format, output=sys.stdout):
@@ -30,8 +30,6 @@ def main(bibfiles, citations, format, output=sys.stdout):
     :param format: Output format (latex or bibtex)
     :param output: Output file
     """
-
-    check_default_config()
 
     #Load the bibtex
     entries = {}

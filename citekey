@@ -36,6 +36,8 @@ if __name__ == '__main__':
 
     bibfiles = args.b
 
+    from libcitebib.config import check_default_config
+    check_default_config()
 
     if bibfiles is None:
         if args.c is not None:
