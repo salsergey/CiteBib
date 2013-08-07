@@ -126,6 +126,28 @@ def check_default_config(location='~/.config/citebib'):
     Check if default configuration files exists.
     If it does not, create them
     """
+    os.makedirs(location, exist_ok=True)
+
+    # Write bibtex location config file
+    file = os.path.join(os.path.expanduser(location), 'bibtex.conf')
+    bibfile = os.path.join(os.path.expanduser(location), 'bibtex.conf')
+    if not os.access(file, os.F_OK):
+        with open(file, 'w') as fh:
+            fh.write("[example]\n")
+            ex_path = "path=" + os.path.join(location, 'example.bib')
+            fh.write(ex_path)
+        with open(bibfile, 'w') as fh:
+            fh.write("""@article{Cesar2013,
+\tauthor = {C{\\'e}sar, J.},
+\tjournal = {Nice Journal},
+\tpages = {12--23},
+\ttitle = {An amazing title},
+\tvolume = {12},
+\tyear = {2013},
+}\n
+""")
+
+    # Write printing mode config files
     formats = ('latex', 'bibtex', 'raw')
     for format in formats:
         path = os.path.join(os.path.expanduser(location), format)
