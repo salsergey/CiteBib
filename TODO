@@ -4,16 +4,21 @@ DOC
 * default config file
 
 
+ENH
+===
+
+* move to the last bibtex parser API
+* natbib support: 2 options case missing
+* if a key is present in different bibtex file, what to do? The current behavior: the last bibtex file has the last word
+
 TODO
 ====
+
 * number of authors for latex output -> et al.
 * default config file: latex style...
 
-* if a key is present in different bibtex file, what to do? The current behavior: the last bibtex file has the last word
-
-* natbib support: 2 options case missing
 * citeclean: clean an entire bibtex file
-* citekey: support of regex in key.
+* citekey: regex support in key.
 
 
 TEST
