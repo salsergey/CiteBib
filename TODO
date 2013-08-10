@@ -10,6 +10,7 @@ ENH
 * move to the last bibtex parser API
 * natbib support: 2 options case missing
 * if a key is present in different bibtex file, what to do? The current behavior: the last bibtex file has the last word
+Have a look to http://sametmax.com/mesurer-les-performances-dun-snippet-python/
 
 TODO
 ====
