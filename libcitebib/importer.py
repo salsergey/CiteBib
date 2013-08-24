@@ -16,20 +16,19 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 import re
-from bibtexparser import BibTexParser, getnames
+from bibtexparser.bparser import BibTexParser
+from bibtexparser import customization
 
 from libcitebib.utils import uniq
 
 
-def _custumize(record):
+def _customizations(record):
     """
     This function curstumizes record for bibtex.
     See bibtexparser lib for more info.
     """
-    if "author" in record:
-        if record["author"]:
-            record["author"] = getnames([i.strip() for i in record["author"].replace('\n', ' ').split(" and ")])
-    return(record)
+    record = customization.author(record)
+    return record
 
 
 def _get_citations(texfilename):
@@ -90,7 +89,7 @@ def get_bibtex_entries(filename):
     :returns: a dictionnary; key=ID, content=entry
     """
     with open(filename, 'r') as bibfile:
-        biblio = BibTexParser(bibfile, customisation=_custumize)
+        biblio = BibTexParser(bibfile, customization=_customizations)
     entries = biblio.get_entry_list()
 
     entries_hash = {}
