@@ -112,10 +112,12 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
             raise ValueError('Wrong format: %s' % format)
     elif field == 'title':
         return string_to_latex(content)
-    #elif field == 'editor':
-    #    return content['name']
-    #elif field == 'journal':
-    #    return content['name']
+    elif field == 'school':
+        return string_to_latex(content)
+    elif field == 'editor':
+        return string_to_latex(content)
+    elif field == 'journal':
+        return string_to_latex(content)
     elif field == 'pages':
         return re.sub('\sto\s', '-', content)
     else:
