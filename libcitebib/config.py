@@ -129,7 +129,7 @@ def check_default_config(location='~/.config/citebib'):
     os.makedirs(os.path.expanduser(location), exist_ok=True)
     # Write bibtex location config file
     file = os.path.join(os.path.expanduser(location), 'bibtex.conf')
-    bibfile = os.path.join(os.path.expanduser(location), 'bibtex.conf')
+    bibfile = os.path.join(os.path.expanduser(location), 'example.bib')
     if not os.access(file, os.F_OK):
         with open(file, 'w') as fh:
             fh.write("[example]\n")
