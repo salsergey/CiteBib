@@ -1,11 +1,11 @@
 ##################
-# v0.3
+# v0.3 2013-10-01
 ##################
 * default config files completed
 * default config moved to .config/citebib
 * upstream lib for bibtex parsing
 * add tests
-* Fix for bibtexparser 0.3
+* Fix for bibtexparser 0.3 and 0.4
 
 ##################
 # v0.2.5 2013-05-28

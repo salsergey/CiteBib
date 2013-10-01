@@ -76,7 +76,7 @@ class TestCitebib(unittest.TestCase):
         stdout, stderr = process.communicate()
         out = stdout.decode()
         expected = """@book{Bird1987,
-\tauthor = {Bird, R.B and Armstrong, R.C and Hassager, O.},
+\tauthor = {Bird, R.B. and Armstrong, R.C. and Hassager, O.},
 \tpublisher = {Wiley Edition},
 \ttitle = {Dynamics of Polymeric Liquid},
 \tyear = {1987},
