@@ -16,7 +16,6 @@
 # Author: Francois Boulogne <fboulogne at sciunto dot org>, 2012
 
 import re
-from libcitebib.converter import string_to_latex
 
 
 def clean_last_name(name):
@@ -101,26 +100,14 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
     if field == 'author':
         if format == 'bibtex':
             auth = get_authors_bibtex(content)
-            return string_to_latex(auth)
+            return auth
         elif format == 'raw':
             auth = get_authors_latex(content, number_authors_name)
             return auth
         elif format == 'latex':
             auth = get_authors_latex(content, number_authors_name)
-            return string_to_latex(auth)
+            return auth
         else:
             raise ValueError('Wrong format: %s' % format)
-    elif field == 'title':
-        return string_to_latex(content)
-    elif field == 'school':
-        return string_to_latex(content)
-    elif field == 'publisher':
-        return string_to_latex(content)
-    elif field == 'editor':
-        return string_to_latex(content)
-    elif field == 'journal':
-        return string_to_latex(content)
-    elif field == 'pages':
-        return re.sub('\sto\s', '--', content)
     else:
         return content

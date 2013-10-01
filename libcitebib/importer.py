@@ -22,12 +22,26 @@ from bibtexparser import customization
 from libcitebib.utils import uniq
 
 
-def _customizations(record):
+def _customizations_latex(record):
     """
     This function curstumizes record for bibtex.
     See bibtexparser lib for more info.
     """
     record = customization.author(record)
+    record = customization.page_double_hyphen(record)
+    #FIXME
+    #record = customization.homogeneize_latex_encoding(record)
+    return record
+
+
+def _customizations_unicode(record):
+    """
+    This function curstumizes record for raw style.
+    See bibtexparser lib for more info.
+    """
+    record = customization.author(record)
+    record = customization.page_double_hyphen(record)
+    record = customization.convert_to_unicode(record)
     return record
 
 
@@ -81,17 +95,24 @@ def get_citations(texfilenames):
     return allcite
 
 
-def get_bibtex_entries(filename):
+def get_bibtex_entries(filename, unicode=True):
     """
     Parse a bibtex file and return the content
 
     :param filename: bibtex filepath
+    :param unicode: If True, unicode style, if False, latex style
     :returns: a dictionnary; key=ID, content=entry
     """
+    if unicode:
+        _customizations = _customizations_unicode
+    else:
+        _customizations = _customizations_latex
+
     with open(filename, 'r') as bibfile:
         biblio = BibTexParser(bibfile, customization=_customizations)
     entries = biblio.get_entry_list()
 
+    # TODO simplify this
     entries_hash = {}
     for entry in entries:
         entries_hash[entry['id']] = entry

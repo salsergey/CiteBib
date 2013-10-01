@@ -17,7 +17,6 @@
 
 from .bibtexentry import *
 from .config import *
-from .converter import *
 from .importer import *
 from .main import *
 from .utils import *
