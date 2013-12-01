@@ -1,4 +1,9 @@
 ##################
+# v0.4 2013-12-01
+##################
+* workaround annoying bug on accents
+
+##################
 # v0.3 2013-10-01
 ##################
 * default config files completed
