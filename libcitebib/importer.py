@@ -27,10 +27,10 @@ def _customizations_latex(record):
     This function curstumizes record for bibtex.
     See bibtexparser lib for more info.
     """
-    record = customization.author(record)
     record = customization.page_double_hyphen(record)
     #FIXME
-    #record = customization.homogeneize_latex_encoding(record)
+    record = customization.homogeneize_latex_encoding(record)
+    record = customization.author(record)
     return record
 
 
