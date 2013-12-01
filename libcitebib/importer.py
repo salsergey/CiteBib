@@ -28,7 +28,6 @@ def _customizations_latex(record):
     See bibtexparser lib for more info.
     """
     record = customization.page_double_hyphen(record)
-    #FIXME
     record = customization.homogeneize_latex_encoding(record)
     record = customization.author(record)
     return record
@@ -39,9 +38,9 @@ def _customizations_unicode(record):
     This function curstumizes record for raw style.
     See bibtexparser lib for more info.
     """
-    record = customization.author(record)
     record = customization.page_double_hyphen(record)
     record = customization.convert_to_unicode(record)
+    record = customization.author(record)
     return record
 
 

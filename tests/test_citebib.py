@@ -49,7 +49,6 @@ class TestCitebib(unittest.TestCase):
     ###########
     # ARTICLES
     ###########
-    @unittest.skip('bug in latex accent')
     def test_article_default(self):
         command = ['citebib', '-b', 'tests/data/article.bib', '-t', 'tests/data/doc_article.tex']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
@@ -59,7 +58,7 @@ class TestCitebib(unittest.TestCase):
 \tauthor = {C{\\'e}sar, J.},
 \tjournal = {Nice Journal},
 \tpages = {12--23},
-\ttitle = {An amazing title},
+\ttitle = {{A}n amazing title},
 \tvolume = {12},
 \tyear = {2013},
 }\n
@@ -79,7 +78,7 @@ class TestCitebib(unittest.TestCase):
         expected = """@book{Bird1987,
 \tauthor = {Bird, R.B. and Armstrong, R.C. and Hassager, O.},
 \tpublisher = {Wiley Edition},
-\ttitle = {Dynamics of Polymeric Liquid},
+\ttitle = {{D}ynamics of {P}olymeric {L}iquid},
 \tyear = {1987},
 }\n
 """

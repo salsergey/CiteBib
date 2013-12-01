@@ -51,7 +51,6 @@ class TestCitekey(unittest.TestCase):
         self.assertEqual(stderr, None)
 
 
-    @unittest.skip('bug in latex support')
     def test_article_latex(self):
         command = ['citekey', '--latex', 'Cesar2013', '-b', 'tests/data/article.bib']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
@@ -61,7 +60,6 @@ class TestCitekey(unittest.TestCase):
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
-    @unittest.skip('bug in latex support')
     def test_article_bibtex(self):
         command = ['citekey', '--bibtex', 'Cesar2013', '-b', 'tests/data/article.bib']
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
@@ -71,7 +69,7 @@ class TestCitekey(unittest.TestCase):
 \tauthor = {C{\\'e}sar, J.},
 \tjournal = {Nice Journal},
 \tpages = {12--23},
-\ttitle = {An amazing title},
+\ttitle = {{A}n amazing title},
 \tvolume = {12},
 \tyear = {2013},
 }\n
@@ -97,7 +95,7 @@ class TestCitekey(unittest.TestCase):
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
-        expected = "\\bibitem{Bird1987}\nR.B. Bird, R.C. Armstrong and O. Hassager, Dynamics of Polymeric Liquid, Wiley Edition (1987).\n"
+        expected = "\\bibitem{Bird1987}\nR.B. Bird, R.C. Armstrong and O. Hassager, {D}ynamics of {P}olymeric {L}iquid, Wiley Edition (1987).\n"
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
@@ -109,11 +107,9 @@ class TestCitekey(unittest.TestCase):
         expected = """@book{Bird1987,
 \tauthor = {Bird, R.B. and Armstrong, R.C. and Hassager, O.},
 \tpublisher = {Wiley Edition},
-\ttitle = {Dynamics of Polymeric Liquid},
+\ttitle = {{D}ynamics of {P}olymeric {L}iquid},
 \tyear = {1987},
 }\n
 """
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
-
-
