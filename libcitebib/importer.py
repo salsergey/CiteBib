@@ -111,9 +111,4 @@ def get_bibtex_entries(filename, unicode=True):
         biblio = BibTexParser(bibfile, customization=_customizations)
     entries = biblio.get_entry_list()
 
-    # TODO simplify this
-    entries_hash = {}
-    for entry in entries:
-        entries_hash[entry['id']] = entry
-
-    return entries_hash
+    return biblio.get_entry_dict()
