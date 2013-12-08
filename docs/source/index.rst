@@ -111,6 +111,12 @@ To print the bibtex entry *foo2010*:
     citekey --bibtex foo2010
 
 
+Related project
+===============
+
+* http://www.cs.tufts.edu/~nr/nbibtex/
+
+
 Indices and tables
 ==================
 
