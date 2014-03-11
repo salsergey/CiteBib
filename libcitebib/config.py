@@ -82,9 +82,9 @@ class ConfigFormat():
             content = []
             #TODO: possibility  must be read from config
             #Then, use a set to make sure each appears once
-            possibilities = ['publisher', 'institution', 'title', 'booktitle',
+            possibilities = ('publisher', 'institution', 'booktitle', 'title',
                              'author', 'pages', 'volume', 'editor',
-                             'year', 'bookpublisher', 'journal']
+                             'year', 'bookpublisher', 'journal')
             try:
                 line = self.config[section].get('format')
             except KeyError:
@@ -183,6 +183,8 @@ def _write_default_config_latex(inifile):
     fields = {
         'article': ('author, journal, \\textbf{volume}, pages (year).'),
         'book': ('author, title, publisher (year).'),
+        'phdthesis' : ('author, Ph.D. thesis, school (year).'),
+        'inproceedings' : ('author, title in booktitle (year).'),
         'unpublished': ('author, title'),
     }
 
@@ -205,6 +207,8 @@ def _write_default_config_raw(inifile):
     fields = {
         'article': ('author, journal, volume, pages (year).'),
         'book': ('author, title, publisher (year).'),
+        'phdthesis' : ('author, Ph.D. thesis, school (year).'),
+        'inproceedings' : ('author, title in booktitle (year).'),
         'unpublished': ('author, title.'),
     }
 
