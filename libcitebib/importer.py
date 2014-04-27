@@ -108,7 +108,7 @@ def get_bibtex_entries(filename, unicode=True):
         _customizations = _customizations_latex
 
     with open(filename, 'r') as bibfile:
-        biblio = BibTexParser(bibfile, customization=_customizations)
+        biblio = BibTexParser(bibfile.read(), customization=_customizations)
     entries = biblio.get_entry_list()
 
     return biblio.get_entry_dict()
