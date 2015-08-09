@@ -23,7 +23,7 @@ NAME = "CiteBib"
 URL = "https://github.com/sciunto/CiteBib"
 LICENSE = "GPLv3+"
 EMAIL = "fboulogne@sciunto.org"
-VERSION = "0.4.1"
+VERSION = "0.4.2"
 
 SHORT_DESCRIPTION = "Generate a nice Bibtex or Latex bibliography according to the document content"
 
