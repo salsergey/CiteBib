@@ -56,7 +56,7 @@ class TestCitekey(unittest.TestCase):
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
-        expected = "\\bibitem{Cesar2013}\nJ. C{\\'e}sar, Nice Journal, \\textbf{12}, 12--23 (2013).\n"
+        expected = "\\bibitem{Cesar2013}\nJ. C{\\'e}sar, {A}n amazing title, Nice Journal, \\textbf{12}, 12--23 (2013).\n"
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
