@@ -21,3 +21,5 @@ from .importer import *
 from .main import *
 from .utils import *
 from .writer import *
+
+__version__ = '0.4.2'

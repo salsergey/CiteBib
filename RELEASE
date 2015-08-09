@@ -3,7 +3,7 @@ How to release
 
 * Update CHANGELOG
 * Update version in doc/source/conf.py
-* Update the file libcitebib/info.py
+* Update version in libcitebib/__init__.py
 * git tag -a 'vX'
 * Create a tarball and upload it on github
     git archive master | bzip2 > citebib-x.y.tar.bz2

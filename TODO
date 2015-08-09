@@ -2,7 +2,6 @@ PACKAGING
 =========
 
 * tests not included
-* change info.py for version in __init__ and data in setup.py
 
 
 DOC
