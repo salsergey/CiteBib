@@ -39,12 +39,12 @@ def write_bibtex(citations, entries, out=sys.stdout):
             print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
             continue
 
-        block += '@' + str(entries[entry]['type']) + '{' + entry + ','
+        block += '@' + str(entries[entry]['ENTRYTYPE']) + '{' + entry + ','
 
         #Sort the list of fields
         fields = []
         for field in entries[entry]:
-            if field != 'type':
+            if field != 'ENTRYTYPE':
                 fields.append(field)
         fields.sort()
 
@@ -69,7 +69,7 @@ def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
     """
     for entry in ordered_list:
         try:
-            authors_list_length = config.get_number_authors(entries[entry]['type'])
+            authors_list_length = config.get_number_authors(entries[entry]['ENTRYTYPE'])
         except KeyError:
             print("%%Missing entry in bibtex file(s): %s" % entry, file=sys.stderr)
             continue
@@ -77,7 +77,7 @@ def write_text(ordered_list, entries, config, format='latex', out=sys.stdout):
         if format == 'latex':
             out.write('\\bibitem{%s}\n' % entry)
         #Get the style from config
-        style = config.get_style(entries[entry]['type'])
+        style = config.get_style(entries[entry]['ENTRYTYPE'])
         for field in entries[entry]:
             data = clean_entry(field, entries[entry][field], format, number_authors_name=authors_list_length)
             style = re.sub(field, data, style)

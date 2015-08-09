@@ -47,13 +47,13 @@ def main(bibfiles, citations, format, output=sys.stdout):
     new = dict()
 
     for entry in entries:
-        citekey = entries[entry]['id']
+        citekey = entries[entry]['ID']
         #If the key is in the tex file
         if citekey in citations:
             tmp = dict()
-            tmp['type'] = entries[entry]['type']
+            tmp['ENTRYTYPE'] = entries[entry]['ENTRYTYPE']
             try:
-                req_field = config.get_reqfields(tmp['type'])
+                req_field = config.get_reqfields(tmp['ENTRYTYPE'])
             except ValueError as e:
                 output.write('% ' + str(e) + '\n')
             else:
