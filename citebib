@@ -18,13 +18,14 @@
 
 import argparse
 from libcitebib import info
+from libcitebib import __version__ as version
 from libcitebib.main import main
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=info.SHORT_DESCRIPTION,
                              epilog='')
-    parser.add_argument('--version', action='version', version=info.NAME + ' ' + info.VERSION)
+    parser.add_argument('--version', action='version', version=version)
     parser.add_argument('--latex', help='LateX type output', action='store_true')
     parser.add_argument('-c', metavar='CONFIG', required=False, help='Configuration file with bibtex paths')
     parser.add_argument('-b', metavar='BIBTEX', nargs='*', required=False, help='Bibtex file(s)')
