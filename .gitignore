@@ -1,3 +1,4 @@
+_version.py
 .backups
 *.bak
 *.py[co]

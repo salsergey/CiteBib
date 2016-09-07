@@ -22,4 +22,8 @@ from .main import *
 from .utils import *
 from .writer import *
 
-__version__ = '0.4.3'
+
+try:
+    from ._version import version as __version__
+except:
+    __version__ = None
