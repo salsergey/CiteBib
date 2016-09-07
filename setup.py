@@ -11,6 +11,8 @@ VERSION = '{major}.{minor}.{micro}'.format(
 VERSION_TEXT = (
     '# This file was generated from setup.py\n'
     "version = '{version}'\n")
+install_requires = [
+    'bibtexparser']
 
 def run_setup():
     version = VERSION
@@ -29,6 +31,7 @@ def run_setup():
             "according to the document content"),
         packages=['libcitebib'],
         scripts=['citebib', 'citekey'],
+        install_requires=install_requires,
 
 
 if __name__ == '__main__':
