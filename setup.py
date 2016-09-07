@@ -1,10 +1,6 @@
 #!/usr/bin/env python
+from setuptools import setup
 
-try:
-    from setuptools import setup
-except ImportError as ex:
-    print('[python-bibtexparser] setuptools not found. Falling back to distutils.core')
-    from distutils.core import setup
 from libcitebib import __version__ as version
 
 setup(
