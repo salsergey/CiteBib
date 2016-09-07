@@ -13,6 +13,16 @@ VERSION_TEXT = (
     "version = '{version}'\n")
 install_requires = [
     'bibtexparser']
+classifiers = [
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Software Development']
+
 
 def run_setup():
     version = VERSION
@@ -32,6 +42,7 @@ def run_setup():
         packages=['libcitebib'],
         scripts=['citebib', 'citekey'],
         install_requires=install_requires,
+        classifiers = classifiers)
 
 
 if __name__ == '__main__':
