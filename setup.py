@@ -35,7 +35,7 @@ def run_setup():
         url="https://github.com/sciunto-org/python-bibtexparser",
         author="Francois Boulogne",
         license="GPLv3+",
-        author_email="fboulogne@sciunt.org",
+        author_email="devel@sciunto.org",
         description=(
             "Generate a nice Bibtex or Latex bibliography "
             "according to the document content"),
