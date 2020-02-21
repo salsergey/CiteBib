@@ -55,6 +55,8 @@ def get_authors_latex(authors, short=0):
 
         #Separator
         if pos == len(authors) - 2:
+            if len(authors) > 2:
+                author_string += ','
             author_string += ' and '
         elif pos == len(authors) - 1:
             pass
@@ -64,7 +66,7 @@ def get_authors_latex(authors, short=0):
             author_string += ', '
     #Add et al if the list is too long...
     if short != 0 and short < len(authors):
-        author_string += ' \\textit{et al.}'
+        author_string += ', et al.'
 
     return author_string
 
@@ -109,6 +111,16 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
         elif format == 'latex':
             auth = get_authors_latex(content, number_authors_name)
             return auth
+        else:
+            raise ValueError('Wrong format: %s' % format)
+    elif field == 'pages':
+        if format == 'latex':
+            return content.split('-')[0]
+        else:
+            raise ValueError('Wrong format: %s' % format)
+    elif field == 'doi':
+        if format == 'latex':
+            return 'http://dx.doi.org/' + content
         else:
             raise ValueError('Wrong format: %s' % format)
     else:

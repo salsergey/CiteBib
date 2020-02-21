@@ -84,7 +84,8 @@ class ConfigFormat():
             #Then, use a set to make sure each appears once
             possibilities = ('publisher', 'institution', 'booktitle', 'title',
                              'author', 'pages', 'volume', 'editor',
-                             'year', 'bookpublisher', 'journal')
+                             'year', 'bookpublisher', 'journal',
+                             'doi', 'eprint', 'type')
             try:
                 line = self.config[section].get('format')
             except KeyError:
@@ -181,7 +182,7 @@ def _write_default_config_latex(inifile):
     :param inifile: ini file name
     """
     fields = {
-        'article': ('author, journal, \\textbf{volume}, pages (year).'),
+        'article': ('author, \\href{doi}{journal \\textbf{volume}, pages (year)}.'),
         'book': ('author, title, publisher (year).'),
         'phdthesis' : ('author, Ph.D. thesis, school (year).'),
         'inproceedings' : ('author, title in booktitle (year).'),
