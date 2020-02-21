@@ -28,7 +28,7 @@ def _customizations_latex(record):
     See bibtexparser lib for more info.
     """
     record = customization.page_double_hyphen(record)
-    record = customization.homogeneize_latex_encoding(record)
+    record = customization.homogenize_latex_encoding(record)
     record = customization.author(record)
     return record
 

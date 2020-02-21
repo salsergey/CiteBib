@@ -43,6 +43,8 @@ def get_authors_latex(authors, short=0):
     if short == 0:  # zero means infinite
         author_list = authors
     else:
+        if len(authors) > short:
+            short = 1
         author_list = authors[:short]
 
     author_string = ''
