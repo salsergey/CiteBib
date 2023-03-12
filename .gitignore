@@ -2,6 +2,7 @@ _version.py
 .backups
 *.bak
 *.py[co]
+.idea
 
 # Packages
 *.egg

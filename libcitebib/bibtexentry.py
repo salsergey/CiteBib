@@ -117,11 +117,11 @@ def clean_entry(field, content, format='bibtex', number_authors_name=0):
         if format == 'latex':
             return content.split('-')[0]
         else:
-            raise ValueError('Wrong format: %s' % format)
+            return content
     elif field == 'doi':
         if format == 'latex':
-            return 'http://dx.doi.org/' + content
+            return 'https://dx.doi.org/' + content
         else:
-            raise ValueError('Wrong format: %s' % format)
+            return content
     else:
         return content
