@@ -5,7 +5,7 @@ from setuptools import setup
 VERSION_FILE = 'libcitebib/_version.py'
 MAJOR = 0
 MINOR = 4
-MICRO = 3
+MICRO = 5
 VERSION = '{major}.{minor}.{micro}'.format(
     major=MAJOR, minor=MINOR, micro=MICRO)
 VERSION_TEXT = (
