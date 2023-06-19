@@ -66,13 +66,13 @@ class TestGetAuthor(unittest.TestCase):
 
     def test_simple_list(self):
         authors = ['Foo, J', 'Bar, R', 'Foobar, D']
-        expected = 'J. Foo, R. Bar and D. Foobar'
+        expected = 'J. Foo, R. Bar, and D. Foobar'
         result = get_authors(authors)
         self.assertEqual(expected, result)
 
     def test_short_list(self):
         authors = ['Foo, J', 'Bar, R', 'Foobar, D']
-        expected = 'J. Foo \\textit{et al.}'
+        expected = 'J. Foo, et al.'
         result = get_authors(authors, 1)
         self.assertEqual(expected, result)
 

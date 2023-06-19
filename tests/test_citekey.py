@@ -56,7 +56,7 @@ class TestCitekey(unittest.TestCase):
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
-        expected = "\\bibitem{Cesar2013}\nJ. C{\\'e}sar, Nice Journal, \\textbf{12}, 12--23 (2013).\n"
+        expected = "\\bibitem{Cesar2013}\nJ. C{\\'e}sar, Nice Journal \\textbf{12}, 12 (2013).\n"
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
@@ -86,7 +86,7 @@ class TestCitekey(unittest.TestCase):
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
-        expected = 'R.B. Bird, R.C. Armstrong and O. Hassager, Dynamics of Polymeric Liquid, Wiley Edition (1987).\n'
+        expected = 'R.B. Bird, R.C. Armstrong, and O. Hassager, Dynamics of Polymeric Liquid, Wiley Edition (1987).\n'
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
@@ -95,7 +95,7 @@ class TestCitekey(unittest.TestCase):
         process = subprocess.Popen(command, bufsize=4096, stdout=subprocess.PIPE)
         stdout, stderr = process.communicate()
         out = stdout.decode()
-        expected = "\\bibitem{Bird1987}\nR.B. Bird, R.C. Armstrong and O. Hassager, {D}ynamics of {P}olymeric {L}iquid, Wiley Edition (1987).\n"
+        expected = "\\bibitem{Bird1987}\nR.B. Bird, R.C. Armstrong, and O. Hassager, {D}ynamics of {P}olymeric {L}iquid, Wiley Edition (1987).\n"
         self.assertEqual(out, expected)
         self.assertEqual(stderr, None)
 
