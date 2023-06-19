@@ -30,15 +30,11 @@ def main(bibfiles, citations, format, output=sys.stdout):
     :param format: Output format (raw, latex or bibtex)
     :param output: Output file
     """
-    if format == 'raw':
-        unicode = True
-    else:
-        unicode = False
 
     #Load the bibtex
     entries = {}
     for bibfile in bibfiles:
-        entries.update(get_bibtex_entries(bibfile, unicode))
+        entries.update(get_bibtex_entries(bibfile, unicode=True))
 
     #Load configuration
     config = ConfigFormat(format)
